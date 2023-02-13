@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "dev": "meme-debug-8bb59",
+    "prod": "meme-2d572",
+    "default": "meme-2d572"
+  }
+}
