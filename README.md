@@ -3,11 +3,13 @@
 ## todo
 
 - [ ] project setting
-- [ ] deploy setting : firebase
+  - [x] next.js
+  - [x] styled component
+  - [ ] firebase
+    - [x] emulator
+    - [x] client
+    - [ ] deploy
 - [ ] client
-
-## page
-
-- [ ] signin
-- [ ] main
-- [ ] edit
+  - [ ] signin
+  - [ ] main
+  - [ ] edit
