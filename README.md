@@ -5,11 +5,13 @@
 - [ ] project setting
   - [x] next.js
   - [x] styled component
-  - [ ] firebase
+  - [x] firebase
     - [x] emulator
     - [x] client
-    - [ ] deploy
+    - [x] deploy
+  - [x] page router
 - [ ] client
   - [ ] signin
-  - [ ] main
-  - [ ] edit
+  - [ ] signup
+  - [ ] home : me check & edit
+  - [ ] share
