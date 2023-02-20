@@ -4,10 +4,11 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "next build && next export",
+		"build": "npm run lint && next build && next export",
 		"start": "next start",
 		"lint": "next lint",
 		"emulator": "firebase emulators:start --import ./firebase-seed --export-on-exit",
+		"deploy": "npm run deploy:dev && npm run deploy:stage && npm run deploy:prod",
 		"deploy:dev": "npm run build && firebase use default && firebase deploy --only hosting",
 		"deploy:stage": "npm run build && firebase use prod && firebase hosting:channel:deploy stage",
 		"deploy:prod": "npm run build && firebase use prod && firebase deploy --only hosting"
