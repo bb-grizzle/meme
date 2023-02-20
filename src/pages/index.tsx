@@ -1,15 +1,9 @@
-import Head from "next/head";
+import PageLayout from "@/layout/PageLayout";
 
 export default function Home() {
 	return (
-		<>
-			<Head>
-				<title>meME</title>
-				<meta name="description" content="What makes me ME" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-			</Head>
-
+		<PageLayout title="Home">
 			<main>mian</main>
-		</>
+		</PageLayout>
 	);
 }

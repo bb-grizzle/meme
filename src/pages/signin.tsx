@@ -1,5 +1,7 @@
+import PageLayout from "@/layout/PageLayout";
+
 const Signin = () => {
-	return <>signin</>;
+	return <PageLayout title="Sign In">signin</PageLayout>;
 };
 
 export default Signin;

@@ -1,3 +1,5 @@
+import HeadMeta from "@/components/shared/HeadMeta";
+import AppLayout from "@/layout/AppLayout";
 import AppProvider from "@/provider/AppProvider";
 import FirebaseProvider from "@/provider/FirebaseProvider";
 import GlobalStyles from "@/styles/global-styles";
@@ -9,9 +11,12 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<AppProvider>
 			<ThemeProvider theme={theme}>
+				<HeadMeta />
 				<GlobalStyles />
 				<FirebaseProvider>
-					<Component {...pageProps} />
+					<AppLayout>
+						<Component {...pageProps} />
+					</AppLayout>
 				</FirebaseProvider>
 			</ThemeProvider>
 		</AppProvider>

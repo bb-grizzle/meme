@@ -11,6 +11,7 @@
     - [x] deploy
   - [x] page router
 - [ ] client
+  - [ ] app : share
   - [ ] signin
   - [ ] signup
   - [ ] home : me check & edit

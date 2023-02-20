@@ -1,7 +1,6 @@
 import reset from "styled-reset";
 import { createGlobalStyle } from "styled-components";
 import theme from "./theme";
-import { colorPalette } from "./theme/colorPalette";
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -95,8 +94,8 @@ const GlobalStyles = createGlobalStyle`
     }
     
     button{
-      border: 1px solid ${props => props.theme.colorPalette.bw[700]};
-      background-color: ${props => props.theme.color.white};
+      border: 1px solid ${(props) => props.theme.colorPalette.bw[700]};
+      background-color: ${(props) => props.theme.color.white};
     }
     
 `;
