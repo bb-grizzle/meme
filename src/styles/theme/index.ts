@@ -10,6 +10,7 @@ import { layout } from "./layout";
 import { size } from "./size";
 import { transition } from "./transition";
 import { zIndex } from "./zIndex";
+import { style } from "./style";
 
 const theme = {
 	color,
@@ -24,6 +25,7 @@ const theme = {
 	fontFamily,
 	shadow,
 	container,
+	style,
 };
 
 export default theme;

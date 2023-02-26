@@ -1,8 +1,10 @@
 import media from "@/styles/media";
 import styled from "styled-components";
 import Container from "./Container";
+import Logo from "./Logo";
+import MenuBtn from "./MenuBtn";
 
-const HeaderCompt = styled.header`
+const HeaderComp = styled.header`
 	height: ${(props) => props.theme.size.header.pc}px;
 
 	@media ${media.tablet} {
@@ -10,17 +12,20 @@ const HeaderCompt = styled.header`
 	}
 `;
 
+const ContainerCustom = styled(Container)`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`;
+
 const Header = () => {
 	return (
-		<HeaderCompt>
-			<Container>
-				{/* logo */}
-				<p>logo</p>
-
-				{/* nav */}
-				<nav>nav</nav>
-			</Container>
-		</HeaderCompt>
+		<HeaderComp>
+			<ContainerCustom>
+				<Logo />
+				<MenuBtn />
+			</ContainerCustom>
+		</HeaderComp>
 	);
 };
 

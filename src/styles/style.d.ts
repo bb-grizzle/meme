@@ -11,6 +11,7 @@ import { size } from "./theme/size";
 import { transition } from "./theme/transition";
 import { zIndex } from "./theme/zIndex";
 import { container } from "./theme/container";
+import { style } from "./theme/style";
 
 declare module "styled-components" {
 	export interface DefaultTheme {
@@ -26,5 +27,6 @@ declare module "styled-components" {
 		zIndex: typeof zIndex;
 		shadow: typeof shadow;
 		container: typeof container;
+		style: typeof style;
 	}
 }

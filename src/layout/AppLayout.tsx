@@ -1,4 +1,5 @@
 import Header from "@/components/shared/Header";
+import Menu from "@/components/shared/Menu";
 import { ReactNode } from "react";
 import styled from "styled-components";
 
@@ -12,6 +13,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 	return (
 		<Wrapper>
 			<Header />
+			<Menu />
 			{children}
 		</Wrapper>
 	);
