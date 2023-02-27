@@ -11,6 +11,7 @@ const useIsUnique = () => {
 
 	useEffect(() => {
 		checkIsUnique();
+		// eslint-disable-next-line
 	}, [user]);
 
 	const checkIsUnique = async () => {

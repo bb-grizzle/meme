@@ -28,6 +28,7 @@ const useInitHomeContext = (ctx: HomeContextProps) => {
 			}
 		};
 		getTags();
+		// eslint-disable-next-line
 	}, [user]);
 
 	return;

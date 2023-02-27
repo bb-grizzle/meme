@@ -17,6 +17,7 @@ const AllTags = () => {
 				return <Tag key={tag.id} {...tag} onClick={() => selectTag(tag.id)} />;
 			});
 		}
+		// eslint-disable-next-line
 	}, [tags]);
 
 	return <>{render()}</>;
