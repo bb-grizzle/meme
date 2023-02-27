@@ -5,6 +5,11 @@ export const DATA_ERROR = {
 		default: "이메일 로그인을 실패했어요... 😢",
 		url: "잘못된 url 이에요. 😢",
 	},
+	// user
+	user: {
+		default: "사용자 정보를 업데이트 하지 못했어요. ",
+		exist: "없는 사용자 입니다. ",
+	},
 	// plan
 	tag: {
 		default: "fail to get tag",

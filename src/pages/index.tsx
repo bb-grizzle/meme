@@ -1,4 +1,5 @@
 import AllTags from "@/components/home/AllTags";
+import ApplyBtn from "@/components/home/ApplyBtn";
 import CheckUnique from "@/components/home/CheckUnique";
 import SearchTag from "@/components/home/SearchTag";
 import Container from "@/components/shared/Container";
@@ -19,6 +20,7 @@ export default function Home() {
 					<CheckUnique />
 					<SearchTag />
 					<AllTags />
+					<ApplyBtn />
 				</Container>
 			</HomeProvider>
 		</PageLayout>

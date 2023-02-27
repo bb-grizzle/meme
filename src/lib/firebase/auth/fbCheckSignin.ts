@@ -49,7 +49,16 @@ const fbCheckSignin: FbCheckSigninType = async () => {
 				};
 			} else {
 				const userData = userDoc.data();
-				const user = { ...userData, uid: auth.currentUser.uid } as UserDataClientType;
+
+				const tags = await Promise.all(
+					userData.tags.map(async (tagId: string) => {
+						const tagDoc = await getDoc(doc(firestore, DATA_COLLECTION.TAG, tagId));
+						return { id: tagDoc.id, ...tagDoc.data() };
+					})
+				);
+
+				const user = { ...userData, uid: auth.currentUser.uid, tags } as UserDataClientType;
+
 				return {
 					ok: true,
 					user,

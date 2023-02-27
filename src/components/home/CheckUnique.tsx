@@ -1,7 +1,9 @@
+import MyTags from "./MyTags";
+
 const CheckUnique = () => {
 	return (
 		<>
-			<p>my tags</p>
+			<MyTags />
 			<p>check unique</p>
 		</>
 	);

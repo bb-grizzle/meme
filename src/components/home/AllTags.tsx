@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import Tag from "../tag";
 
 const AllTags = () => {
-	const { tags } = useHomeTag();
+	const { tags, selectTag } = useHomeTag();
 
 	const render = useCallback(() => {
 		if (tags.loading) {
@@ -14,7 +14,7 @@ const AllTags = () => {
 			return "not yet";
 		} else {
 			return tags.data.map((tag) => {
-				return <Tag key={tag.id} {...tag} />;
+				return <Tag key={tag.id} {...tag} onClick={() => selectTag(tag.id)} />;
 			});
 		}
 	}, [tags]);

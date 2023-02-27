@@ -1,6 +1,8 @@
+import { TagDataClientType } from "@/types/tag";
 import { AppContext } from ".";
 import { useContext, useEffect } from "react";
 import { User } from "firebase/auth";
+import { UserDataClientType } from "@/types/user";
 
 const useUser = () => {
 	// FIELD
@@ -20,7 +22,7 @@ const useUser = () => {
 	}, [user, setIsLogin]);
 
 	// METHOD
-	const changeUser = (user: User) => {
+	const changeUser = (user: UserDataClientType) => {
 		setUser(user);
 	};
 
@@ -28,7 +30,13 @@ const useUser = () => {
 		setUser(null);
 	};
 
-	return { isLogin, user, changeUser, clearUser, uid: user?.uid };
+	const updateUserTags = (tags: TagDataClientType[]) => {
+		if (!user) return;
+
+		setUser({ ...user, tags });
+	};
+
+	return { isLogin, user, changeUser, clearUser, uid: user?.uid, updateUserTags };
 };
 
 export default useUser;

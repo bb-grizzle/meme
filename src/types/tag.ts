@@ -9,4 +9,11 @@ export type TagDataType = TagDataUploadType & {
 	updatedAt: Timestamp;
 };
 
-export type TagDataClientType = TagDataType & {};
+export type TagDataClientType = TagDataType & {
+	active: boolean;
+};
+
+export type ChangedTagType = {
+	id: string;
+	active: boolean;
+};
