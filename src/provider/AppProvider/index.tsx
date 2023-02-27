@@ -1,3 +1,4 @@
+import { UserDataClientType } from "@/types/user";
 import { User } from "firebase/auth";
 import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
 import useInitAppContext from "./useInitAppContext";
@@ -8,7 +9,7 @@ interface AppProviderProps {
 
 export type AppContextProps = {
 	isLoginState: [boolean | null, Dispatch<SetStateAction<boolean | null>>];
-	userState: [User | null | undefined, Dispatch<SetStateAction<User | null | undefined>>];
+	userState: [UserDataClientType | null | undefined, Dispatch<SetStateAction<UserDataClientType | null | undefined>>];
 	isMenuClickedState: [boolean, Dispatch<SetStateAction<boolean>>];
 };
 
@@ -16,7 +17,7 @@ export const AppContext = createContext({} as AppContextProps);
 
 const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 	// FIELD
-	const userState = useState<User | null | undefined>(undefined);
+	const userState = useState<UserDataClientType | null | undefined>(undefined);
 	const isLoginState = useState<boolean | null>(null);
 	const isMenuClickedState = useState(false);
 

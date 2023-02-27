@@ -1,11 +1,16 @@
 import { DATA_COLLECTION } from "./../../../data/collection";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
 import { DATA_ERROR } from "@/data/error";
 import { ResolverReturnType } from "@/types/resolver";
 import { isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
 import { auth, firestore } from "../client";
+import { UserDataClientType } from "@/types/user";
 
-type FbCheckSigninType = () => Promise<ResolverReturnType>;
+type FbCheckSigninType = () => Promise<
+	ResolverReturnType & {
+		user?: UserDataClientType;
+	}
+>;
 
 const fbCheckSignin: FbCheckSigninType = async () => {
 	try {
@@ -28,12 +33,34 @@ const fbCheckSignin: FbCheckSigninType = async () => {
 
 		// 03. sign in with email
 		await signInWithEmailLink(auth, email, window.location.href);
-		await addDoc(collection(firestore, DATA_COLLECTION.USER), { email, tags: [], createdAt: Timestamp.now(), updatedAt: Timestamp.now() });
 		window.localStorage.removeItem("emailForSignIn");
 
-		return {
-			ok: true,
-		};
+		if (auth.currentUser) {
+			const userDoc = await getDoc(doc(firestore, DATA_COLLECTION.USER, auth.currentUser.uid));
+
+			if (!userDoc.exists()) {
+				const userUpload = { email, tags: [], createdAt: Timestamp.now(), updatedAt: Timestamp.now() };
+				await setDoc(doc(firestore, DATA_COLLECTION.USER, auth.currentUser.uid), userUpload);
+				const user: UserDataClientType = { ...userUpload, uid: auth.currentUser.uid };
+
+				return {
+					ok: true,
+					user,
+				};
+			} else {
+				const userData = userDoc.data();
+				const user = { ...userData, uid: auth.currentUser.uid } as UserDataClientType;
+				return {
+					ok: true,
+					user,
+				};
+			}
+		} else {
+			return {
+				ok: false,
+				message: DATA_ERROR.signIn.default,
+			};
+		}
 	} catch (error) {
 		return {
 			ok: false,

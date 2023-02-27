@@ -1,5 +1,6 @@
 import PageLayout from "@/layout/PageLayout";
 import fbCheckSignin from "@/lib/firebase/auth/fbCheckSignin";
+import useUser from "@/provider/AppProvider/useUser";
 import { ROUTER } from "@/router";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -16,7 +17,7 @@ const Signup = () => {
 			if (mode !== "signIn") push(ROUTER.signin);
 
 			// 02. send fb check signin
-			const { ok, message } = await fbCheckSignin();
+			const { ok } = await fbCheckSignin();
 
 			if (ok) {
 				push(ROUTER.home);
