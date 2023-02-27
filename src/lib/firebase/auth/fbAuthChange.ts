@@ -15,12 +15,15 @@ const fbAuthChange = ({ changeUser, clearUser }: FbAuthChangeProps) => {
 			const userDocRef = await getDoc(doc(firestore, DATA_COLLECTION.USER, user.uid));
 			const userData = userDocRef.data();
 
-			const tags = await Promise.all(
-				userData?.tags.map(async (tagId: string) => {
-					const tagDoc = await getDoc(doc(firestore, DATA_COLLECTION.TAG, tagId));
-					return { id: tagDoc.id, ...tagDoc.data() };
-				})
-			);
+			let tags = [];
+			if (userData) {
+				tags = await Promise.all(
+					userData?.tags.map(async (tagId: string) => {
+						const tagDoc = await getDoc(doc(firestore, DATA_COLLECTION.TAG, tagId));
+						return { id: tagDoc.id, ...tagDoc.data() };
+					})
+				);
+			}
 
 			const nowUser = { ...userDocRef.data(), uid: user.uid, tags } as UserDataClientType;
 

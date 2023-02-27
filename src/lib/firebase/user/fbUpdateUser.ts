@@ -29,14 +29,16 @@ const fbUpdateUser: FbUpdateUserType = async ({ changes, uid }) => {
 		}
 
 		const originTags: string[] = userDoc.data().tags;
-		const tags = changes.reduce((prev, current) => {
-			if (current.active) {
-				prev = [...prev, current.id];
-			} else {
-				prev = prev.filter((id) => id !== current.id);
-			}
-			return prev;
-		}, originTags);
+		const tags = changes
+			.reduce((prev, current) => {
+				if (current.active) {
+					prev = [...prev, current.id];
+				} else {
+					prev = prev.filter((id) => id !== current.id);
+				}
+				return prev;
+			}, originTags)
+			.sort();
 
 		await updateDoc(docRef, { tags });
 		const clientTags = await Promise.all(

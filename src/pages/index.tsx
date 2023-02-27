@@ -1,6 +1,6 @@
 import AllTags from "@/components/home/AllTags";
 import ApplyBtn from "@/components/home/ApplyBtn";
-import CheckUnique from "@/components/home/CheckUnique";
+import HomeUser from "@/components/home/CheckUnique";
 import SearchTag from "@/components/home/SearchTag";
 import Container from "@/components/shared/Container";
 import useRedirect from "@/hook/useRedirect";
@@ -17,7 +17,7 @@ export default function Home() {
 		<PageLayout title="Home">
 			<HomeProvider>
 				<Container>
-					<CheckUnique />
+					<HomeUser />
 					<SearchTag />
 					<AllTags />
 					<ApplyBtn />

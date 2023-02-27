@@ -9,8 +9,8 @@ const MyTags = () => {
 		if (!user) return "loading...";
 		else if (!user.tags.length) return "there are no tags...";
 		else
-			user.tags.map((tag) => {
-				return <Tag {...tag} />;
+			return user.tags.map((tag) => {
+				return <Tag {...tag} key={tag.id} />;
 			});
 	}, [user]);
 

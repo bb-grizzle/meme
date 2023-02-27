@@ -1,12 +1,13 @@
+import IsUnique from "./IsUnique";
 import MyTags from "./MyTags";
 
-const CheckUnique = () => {
+const HomeUser = () => {
 	return (
 		<>
+			<IsUnique />
 			<MyTags />
-			<p>check unique</p>
 		</>
 	);
 };
 
-export default CheckUnique;
+export default HomeUser;
