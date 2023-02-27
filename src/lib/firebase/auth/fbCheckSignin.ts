@@ -1,7 +1,9 @@
+import { DATA_COLLECTION } from "./../../../data/collection";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { DATA_ERROR } from "@/data/error";
 import { ResolverReturnType } from "@/types/resolver";
 import { isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
-import { auth } from "../client";
+import { auth, firestore } from "../client";
 
 type FbCheckSigninType = () => Promise<ResolverReturnType>;
 
@@ -26,7 +28,9 @@ const fbCheckSignin: FbCheckSigninType = async () => {
 
 		// 03. sign in with email
 		await signInWithEmailLink(auth, email, window.location.href);
+		await addDoc(collection(firestore, DATA_COLLECTION.USER), { email, tags: [], createdAt: Timestamp.now(), updatedAt: Timestamp.now() });
 		window.localStorage.removeItem("emailForSignIn");
+
 		return {
 			ok: true,
 		};
