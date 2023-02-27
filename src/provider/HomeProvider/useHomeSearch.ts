@@ -2,12 +2,15 @@ import { DATA_ERROR } from "@/data/error";
 import { HomeContext } from "./index";
 import { useContext } from "react";
 import fbTagCreate from "@/lib/firebase/tag/fbTagCreate";
+import useHomeTag from "./useHomeTag";
+import { TagDataClientType } from "@/types/tag";
 
 const useHomeSearch = () => {
 	// FIELD
 	const { tagsState, searchTagsState } = useContext(HomeContext);
 	const [tags, setTags] = tagsState;
 	const [searchTags, setSearchTags] = searchTagsState;
+	const { addChangedId } = useHomeTag();
 
 	// METHOD
 	// : search existing tags
@@ -29,7 +32,10 @@ const useHomeSearch = () => {
 			setTags((prev) => ({ ...prev, loading: true }));
 			const { ok, data } = await fbTagCreate({ keyword });
 			if (ok && data) {
-				setTags((prev) => ({ loading: false, error: "", data: prev.data ? [data, ...prev.data] : [data] }));
+				const activeTag: TagDataClientType = { ...data, active: true };
+				setTags((prev) => ({ loading: false, error: "", data: prev.data ? [activeTag, ...prev.data] : [activeTag] }));
+
+				addChangedId(data);
 			}
 		} catch (error) {
 			console.log(error);

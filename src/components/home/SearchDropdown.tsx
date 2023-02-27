@@ -1,8 +1,11 @@
+import useHomeTag from "@/provider/HomeProvider/useHomeTag";
 import { TagDataClientType } from "@/types/tag";
 import styled from "styled-components";
+import Tag from "../tag";
 
 interface SearchDropdownProps {
 	tags: TagDataClientType[];
+	createKeyword: () => void;
 }
 
 const Ul = styled.ul`
@@ -22,18 +25,23 @@ const Li = styled.li`
 	padding: 4px;
 	border: 1px solid black;
 	font-weight: 100;
+	${(props) => props.theme.style.hoverStyle};
 `;
 
-const SearchDropdown: React.FC<SearchDropdownProps> = ({ tags }) => {
-	const onListClick = (value: string) => {};
+const SearchDropdown: React.FC<SearchDropdownProps> = ({ tags, createKeyword }) => {
+	const { selectTag } = useHomeTag();
+
+	const onListClick = (id: string) => {
+		selectTag(id);
+	};
 
 	return (
 		<Ul>
-			{!tags.length && <Li>no result</Li>}
+			{!tags.length && <Li onClick={createKeyword}>create new!</Li>}
 			{tags.map((tag) => {
 				return (
-					<Li key={tag.id} onClick={() => onListClick(tag.keyword)}>
-						{tag.keyword}
+					<Li key={tag.id} onClick={() => onListClick(tag.id)}>
+						<Tag {...tag} />
 					</Li>
 				);
 			})}

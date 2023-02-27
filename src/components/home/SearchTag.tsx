@@ -17,6 +17,10 @@ const SearchTag = () => {
 
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		createKeyword();
+	};
+
+	const createKeyword = async () => {
 		if (!searchHook.value) return;
 		await createTag(`${searchHook.value}`);
 		searchHook.clear();
@@ -30,14 +34,17 @@ const SearchTag = () => {
 	};
 
 	const onBlur = async () => {
-		await findSearchTags(``);
+		setTimeout(async () => {
+			await findSearchTags(``);
+			searchHook.clear();
+		}, 500);
 	};
 
 	return (
 		<Form onSubmit={onSubmit}>
 			<InputText {...searchHook} inputOption={{ ...searchHook.inputOption, onKeyUp, onBlur }} />
 
-			{searchTags.data && <SearchDropdown tags={searchTags.data} />}
+			{searchTags.data && <SearchDropdown tags={searchTags.data} createKeyword={createKeyword} />}
 		</Form>
 	);
 };
