@@ -6,16 +6,16 @@ interface PageLayoutProps {
 	title: string;
 }
 
-const Wrapper = styled.div``;
+const Main = styled.main``;
 
 const PageLayout: React.FC<PageLayoutProps> = ({ children, title }) => {
 	return (
-		<Wrapper>
+		<>
 			<Head>
-				<title>me?ME! | {title}</title>
+				<title>{`me?ME! | ${title}`}</title>
 			</Head>
-			{children}
-		</Wrapper>
+			<Main>{children}</Main>
+		</>
 	);
 };
 

@@ -3,6 +3,8 @@ import { connectAuthEmulator, getAuth } from "firebase/auth";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { connectStorageEmulator, getStorage } from "firebase/storage";
 
+const EMULATORS_STARTED = "EMULATORS_STARTED";
+
 const firebaseConfig = {
 	apiKey: process.env.NEXT_PUBLIC_APIKEY,
 	authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
@@ -30,11 +32,14 @@ const firestore = getFirestore(app);
 const storage = getStorage(app);
 
 if (process.env.NODE_ENV === "development") {
-	const localhost = "localhost";
-	const hostname = typeof window !== "undefined" ? window.location.hostname : localhost;
-	connectAuthEmulator(auth, `http://${hostname}:9099`, { disableWarnings: true });
-	connectFirestoreEmulator(firestore, `${hostname}`, 8080);
-	connectStorageEmulator(storage, `${hostname}`, 9199);
+	if (typeof window !== "undefined" && !window[EMULATORS_STARTED]) {
+		const localhost = "localhost";
+		const hostname = typeof window !== "undefined" ? window.location.hostname : localhost;
+		connectAuthEmulator(auth, `http://${hostname}:9099`, { disableWarnings: true });
+		connectFirestoreEmulator(firestore, `${hostname}`, 8080, {});
+		connectStorageEmulator(storage, `${hostname}`, 9199);
+		window[EMULATORS_STARTED] = true;
+	}
 }
 
 export { auth, firestore, storage };

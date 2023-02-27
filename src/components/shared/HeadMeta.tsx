@@ -1,7 +1,5 @@
 import Head from "next/head";
 
-import { Head as HeadDoc } from "next/document";
-
 const HeadMeta = () => {
 	return (
 		<Head>

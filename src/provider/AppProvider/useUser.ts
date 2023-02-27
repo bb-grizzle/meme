@@ -28,9 +28,7 @@ const useUser = () => {
 		setUser(null);
 	};
 
-	const signoutUser = () => {};
-
-	return { isLogin, user, changeUser, clearUser, signoutUser, uid: user?.uid };
+	return { isLogin, user, changeUser, clearUser, uid: user?.uid };
 };
 
 export default useUser;

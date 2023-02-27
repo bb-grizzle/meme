@@ -1,3 +1,4 @@
+import fbSignout from "@/lib/firebase/auth/fbSignout";
 import useMenu from "@/provider/AppProvider/useMenu";
 import useUser from "@/provider/AppProvider/useUser";
 import { ROUTER } from "@/router";
@@ -76,7 +77,7 @@ const LinkCustom = styled(Link)`
 
 const Menu = () => {
 	const { isMenuClicked, closeMenu } = useMenu();
-	const { signoutUser } = useUser();
+	// const { isLogin } = useUser();
 
 	return isMenuClicked ? (
 		<Wrapper>
@@ -88,10 +89,9 @@ const Menu = () => {
 				<Nav>
 					<LinkWrapper>
 						<LinkCustom href={ROUTER.home}>home</LinkCustom>
-						<LinkCustom href={ROUTER.me}>profile</LinkCustom>
 						<LinkCustom href={ROUTER.about}>about</LinkCustom>
 					</LinkWrapper>
-					<Button text="logout" onClick={signoutUser} />
+					<Button text="logout" onClick={fbSignout} />
 				</Nav>
 			</MenuWrapper>
 		</Wrapper>

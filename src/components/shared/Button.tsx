@@ -26,7 +26,7 @@ const ButtonWrapper = styled.button<{ btnType: BtnTypeEnum; reverse: boolean; ma
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-radius: 999px;
+	border-radius: 8px;
 	gap: 8px;
 	${(props) => props.theme.fontStyle.body.medium};
 	flex-direction: ${(props) => (props.reverse ? "row-reverse" : "row")};

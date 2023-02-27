@@ -11,7 +11,7 @@ type FbSigninProps = {
 	email: string;
 };
 
-const fbSignin: FbSigninType = async ({ email }) => {
+const fbSendSigninLink: FbSigninType = async ({ email }) => {
 	try {
 		// send email
 		const url = `${window.location.origin}/${ROUTER.signup}`;
@@ -36,4 +36,4 @@ const fbSignin: FbSigninType = async ({ email }) => {
 	}
 };
 
-export default fbSignin;
+export default fbSendSigninLink;

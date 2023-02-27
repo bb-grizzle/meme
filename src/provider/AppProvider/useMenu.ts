@@ -8,6 +8,7 @@ const useMenu = () => {
 
 	useEffect(() => {
 		closeMenu();
+		// eslint-disable-next-line
 	}, [pathname]);
 
 	const openMenu = () => setIsMenuClicked(true);
