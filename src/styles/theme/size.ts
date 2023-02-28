@@ -17,7 +17,7 @@ export const size = {
 	},
 
 	core: {
-		pc: 120,
+		pc: 180,
 		tablet: 120,
 	},
 };

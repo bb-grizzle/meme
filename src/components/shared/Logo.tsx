@@ -1,3 +1,5 @@
+import { ROUTER } from "@/router";
+import Link from "next/link";
 import styled from "styled-components";
 
 const Text = styled.p`
@@ -7,7 +9,11 @@ const Text = styled.p`
 `;
 
 const Logo = () => {
-	return <Text>me?ME!</Text>;
+	return (
+		<Text>
+			<Link href={ROUTER.home}>me?ME!</Link>
+		</Text>
+	);
 };
 
 export default Logo;

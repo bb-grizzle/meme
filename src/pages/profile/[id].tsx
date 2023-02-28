@@ -1,4 +1,4 @@
-import ProfileVIew from "@/components/profile/ProfileVIew";
+import ProfileView from "@/components/profile/ProfileVIew";
 import Container from "@/components/shared/Container";
 import PageLayout from "@/layout/PageLayout";
 import ProfileProvider from "@/provider/ProfileProvider";
@@ -8,7 +8,7 @@ const Profile = () => {
 		<PageLayout title="Profile">
 			<Container>
 				<ProfileProvider>
-					<ProfileVIew />
+					<ProfileView />
 				</ProfileProvider>
 			</Container>
 		</PageLayout>

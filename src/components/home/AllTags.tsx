@@ -4,6 +4,24 @@ import Tag from "../tag";
 import styled, { css } from "styled-components";
 import Button, { BtnTypeEnum } from "../shared/Button";
 import Container from "../shared/Container";
+import media from "@/styles/media";
+import { ROUTER } from "@/router";
+import useUser from "@/provider/AppProvider/useUser";
+import { DATA_MESSAGE } from "@/data/message";
+
+const BtnWrapper = styled.div`
+	position: fixed;
+	right: ${(props) => props.theme.size.offset.pc}px;
+	bottom: ${(props) => props.theme.size.offset.pc}px;
+	gap: 8px;
+	display: flex;
+	flex-direction: column;
+
+	@media ${media.tablet} {
+		right: ${(props) => props.theme.size.offset.tablet}px;
+		bottom: ${(props) => props.theme.size.offset.tablet}px;
+	}
+`;
 
 const Section = styled.section<{ active: boolean }>`
 	position: fixed;
@@ -34,11 +52,7 @@ const Header = styled.div`
 	justify-content: flex-end;
 `;
 
-const ButtonCustom = styled(Button)`
-	position: fixed;
-	right: ${(props) => props.theme.size.offset.pc}px;
-	bottom: ${(props) => props.theme.size.offset.pc}px;
-`;
+const ButtonCustom = styled(Button)``;
 
 const TagWrapper = styled.div`
 	display: flex;
@@ -50,6 +64,13 @@ const TagWrapper = styled.div`
 const AllTags = () => {
 	const { tags, selectTag } = useHomeTag();
 	const [isClicked, setIsClicked] = useState(false);
+	const { uid } = useUser();
+
+	const onShareClick = async () => {
+		const url = `${window.location.origin}/profile/${uid}`;
+		await window.navigator.clipboard.writeText(url);
+		alert(DATA_MESSAGE.share);
+	};
 
 	const render = useCallback(() => {
 		if (tags.loading) {
@@ -68,7 +89,10 @@ const AllTags = () => {
 
 	return (
 		<>
-			<ButtonCustom iconOption={{ name: "rocket-outline" }} btnType={BtnTypeEnum.LINE} onClick={() => setIsClicked(true)} />
+			<BtnWrapper>
+				<ButtonCustom iconOption={{ name: "share-social-outline" }} btnType={BtnTypeEnum.LINE} onClick={onShareClick} />
+				<ButtonCustom iconOption={{ name: "rocket-outline" }} btnType={BtnTypeEnum.LINE} onClick={() => setIsClicked(true)} />
+			</BtnWrapper>
 			<Section active={isClicked}>
 				<Container>
 					<Header>

@@ -1,6 +1,8 @@
 import UserCore from "./UserCore";
 import MyTags from "./MyTags";
 import styled from "styled-components";
+import useIsUnique from "@/provider/AppProvider/useIsUnique";
+import useUser from "@/provider/AppProvider/useUser";
 
 const Wrapper = styled.div`
 	flex-grow: 1;
@@ -12,9 +14,11 @@ const Wrapper = styled.div`
 `;
 
 const HomeUser = () => {
+	const { user } = useUser();
+	const { sharedUser } = useIsUnique();
 	return (
 		<Wrapper>
-			<UserCore />
+			{user && <UserCore sharedUser={Number(sharedUser)} name={user?.email ?? ""} />}
 			<MyTags />
 		</Wrapper>
 	);
