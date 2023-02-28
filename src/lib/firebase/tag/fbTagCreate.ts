@@ -17,7 +17,7 @@ type FbTagCreateResultType = ResolverReturnType & {
 const fbTagCreate: FbTagCreateType = async ({ keyword }) => {
 	try {
 		const docRef = await addDoc(collection(firestore, DATA_COLLECTION.TAG), {
-			keyword,
+			keyword: keyword.toLowerCase(),
 			createdAt: Timestamp.now(),
 			updatedAt: Timestamp.now(),
 		});

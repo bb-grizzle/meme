@@ -17,7 +17,7 @@ const useHomeSearch = () => {
 	const findSearchTags = async (keyword: string) => {
 		try {
 			if (!!keyword) {
-				setSearchTags((prev) => ({ ...prev, data: !!tags.data ? tags.data.filter((tag) => tag.keyword.includes(keyword)) : [] }));
+				setSearchTags((prev) => ({ ...prev, data: !!tags.data ? tags.data.filter((tag) => tag.keyword.toLowerCase().includes(keyword.toLowerCase())) : [] }));
 			} else {
 				setSearchTags((prev) => ({ ...prev, data: null }));
 			}
