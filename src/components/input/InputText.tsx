@@ -23,7 +23,7 @@ const InputWrapper = styled.div`
 
 const Input = styled.input`
 	${(props) => props.theme.fontStyle.body.large};
-	padding: 7px 12px 9px 12px;
+	padding: 8px 16px;
 	border: 1px solid ${(props) => props.theme.colorPalette.bw[700]};
 	border-radius: 999px;
 	appearance: none;

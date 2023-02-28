@@ -1,9 +1,11 @@
 import fbSignout from "@/lib/firebase/auth/fbSignout";
 import useMenu from "@/provider/AppProvider/useMenu";
+import useUser from "@/provider/AppProvider/useUser";
 import { ROUTER } from "@/router";
 import media from "@/styles/media";
 import IonIcon from "@reacticons/ionicons";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import Button from "./Button";
 
@@ -76,7 +78,8 @@ const LinkCustom = styled(Link)`
 
 const Menu = () => {
 	const { isMenuClicked, closeMenu } = useMenu();
-	// const { isLogin } = useUser();
+	const { isLogin } = useUser();
+	const { push } = useRouter();
 
 	return isMenuClicked ? (
 		<Wrapper>
@@ -89,8 +92,9 @@ const Menu = () => {
 					<LinkWrapper>
 						<LinkCustom href={ROUTER.home}>home</LinkCustom>
 						<LinkCustom href={ROUTER.about}>about</LinkCustom>
+						<LinkCustom href={ROUTER.setting}>setting</LinkCustom>
 					</LinkWrapper>
-					<Button text="logout" onClick={fbSignout} />
+					{isLogin === true ? <Button text="logout" onClick={fbSignout} /> : <Button text="signin" onClick={() => push(ROUTER.signin)} />}
 				</Nav>
 			</MenuWrapper>
 		</Wrapper>

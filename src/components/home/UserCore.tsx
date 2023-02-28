@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import RandBgText from "../shared/RandBgText";
 
 interface UserCoreProps {
 	sharedUser: number;
@@ -13,7 +14,7 @@ const Wrapper = styled.div`
 	text-align: center;
 	border-radius: 999px;
 	${(props) => props.theme.layout.center_flex};
-	color: ${(props) => props.theme.colorPalette.bw[700]};
+	color: ${(props) => props.theme.colorPalette.bw[900]};
 	${(props) => props.theme.fontStyle.body.medium};
 	background-color: transparent;
 	position: relative;
@@ -31,14 +32,9 @@ const Text = styled.p`
 	line-height: 1.6;
 `;
 
-const Name = styled.span`
+const Name = styled(RandBgText)`
 	text-transform: initial;
 	${(props) => props.theme.fontStyle.label.large};
-	border: 1px solid ${(props) => props.theme.colorPalette.bw[700]};
-	border-radius: 4px;
-	color: white;
-	padding: 0 4px;
-	background-color: ${(props) => props.theme.colorPalette.tag.bgColor[Math.floor(Math.random() * props.theme.colorPalette.tag.bgColor.length)]};
 `;
 
 const UserCore: React.FC<UserCoreProps> = ({ sharedUser, name }) => {
@@ -48,11 +44,11 @@ const UserCore: React.FC<UserCoreProps> = ({ sharedUser, name }) => {
 
 			{sharedUser === 1 ? (
 				<Text>
-					<Name>{name}</Name> are one and only 😎
+					<Name text={name} /> are one and only 😎
 				</Text>
 			) : (
 				<Text>
-					{Number(sharedUser) < 21 ? Number(sharedUser) - 1 : "20 over"} people are same with <Name>{name}</Name>
+					{Number(sharedUser) < 21 ? Number(sharedUser) - 1 : "20 over"} people are same with <Name text={name} />
 				</Text>
 			)}
 		</Wrapper>

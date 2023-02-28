@@ -37,11 +37,11 @@ const fbCheckSignin: FbCheckSigninType = async () => {
 
 		if (auth.currentUser) {
 			const userDoc = await getDoc(doc(firestore, DATA_COLLECTION.USER, auth.currentUser.uid));
-
+			auth.currentUser.displayName;
 			if (!userDoc.exists()) {
 				const userUpload = { email, tags: [], createdAt: Timestamp.now(), updatedAt: Timestamp.now() };
 				await setDoc(doc(firestore, DATA_COLLECTION.USER, auth.currentUser.uid), userUpload);
-				const user: UserDataClientType = { ...userUpload, uid: auth.currentUser.uid };
+				const user: UserDataClientType = { ...userUpload, uid: auth.currentUser.uid, displayName: auth.currentUser.displayName };
 
 				return {
 					ok: true,

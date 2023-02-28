@@ -16,7 +16,7 @@ type FbUpdateUserResultType = ResolverReturnType & {
 	tags?: TagDataClientType[];
 };
 
-const fbUpdateUser: FbUpdateUserType = async ({ changes, uid }) => {
+const fbUpdateUserTag: FbUpdateUserType = async ({ changes, uid }) => {
 	try {
 		// find user
 		const docRef = doc(firestore, DATA_COLLECTION.USER, uid);
@@ -60,4 +60,4 @@ const fbUpdateUser: FbUpdateUserType = async ({ changes, uid }) => {
 	}
 };
 
-export default fbUpdateUser;
+export default fbUpdateUserTag;

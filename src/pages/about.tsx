@@ -3,7 +3,7 @@ import PageLayout from "@/layout/PageLayout";
 
 const About = () => {
 	return (
-		<PageLayout title="About me ME">
+		<PageLayout title="About">
 			<Container>
 				<p>this is about!</p>
 			</Container>

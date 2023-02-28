@@ -35,7 +35,11 @@ const useUser = () => {
 		setUser({ ...user, tags });
 	};
 
-	return { isLogin, user, changeUser, clearUser, uid: user?.uid, updateUserTags };
+	const updateUser = (user: UserDataClientType) => {
+		setUser((prev) => ({ ...user, tags: prev?.tags ?? [] }));
+	};
+
+	return { isLogin, user, changeUser, clearUser, uid: user?.uid, updateUserTags, updateUser };
 };
 
 export default useUser;

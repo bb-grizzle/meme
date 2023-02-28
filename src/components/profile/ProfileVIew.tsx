@@ -10,19 +10,12 @@ const Wrapper = styled.section`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-top: 64px;
 `;
 
 const TagWrapper = styled.div`
 	${(props) => props.theme.layout.center_flex};
 	transform-style: preserve-3d;
 	flex-grow: 1;
-`;
-
-const Name = styled.p`
-	border: 1px solid ${(props) => props.theme.colorPalette.bw[900]};
-	padding: 8px 16px;
-	border-radius: 8px;
 `;
 
 const ProfileView = () => {
@@ -36,7 +29,6 @@ const ProfileView = () => {
 		} else if (profile.data) {
 			return (
 				<Wrapper>
-					{/* <Name>{profile.data.email}</Name> */}
 					<TagWrapper>
 						<UserCore sharedUser={profile.data.tagCount} name={profile.data.email} />
 						<ProfileTags tags={profile.data.tags} />

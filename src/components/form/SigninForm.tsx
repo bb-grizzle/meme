@@ -3,6 +3,21 @@ import fbSendSigninLink from "@/lib/firebase/auth/fbSendSigninLink";
 import { FormEvent, useEffect, useState } from "react";
 import InputText from "../input/InputText";
 import Button, { BtnTypeEnum } from "../shared/Button";
+import styled from "styled-components";
+import RandBgText from "../shared/RandBgText";
+
+const Text = styled.p`
+	${(props) => props.theme.colorPalette.bw[700]};
+	margin-bottom: 24px;
+	text-decoration: underline;
+`;
+
+const EmailText = styled(RandBgText)``;
+
+const BtnWrapper = styled.div`
+	display: flex;
+	gap: 8px;
+`;
 
 const SigninForm = () => {
 	const emailHook = useInputDefault({ inputOption: { name: "email", placeholder: "type your email" } });
@@ -38,10 +53,14 @@ const SigninForm = () => {
 				</>
 			) : (
 				<>
-					<p>check your mail box</p>
+					<Text>
+						check your <EmailText text={`${emailHook.value}`} /> mail box ...📮
+					</Text>
 
-					<Button text="type another email" iconOption={{ name: "arrow-back" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={back} />
-					<Button text="resend" iconOption={{ name: "refresh" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={sendEmail} />
+					<BtnWrapper>
+						<Button text="type another email" iconOption={{ name: "arrow-back" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={back} />
+						<Button text="resend" iconOption={{ name: "refresh" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={sendEmail} />
+					</BtnWrapper>
 				</>
 			)}
 		</form>

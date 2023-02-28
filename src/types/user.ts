@@ -6,6 +6,7 @@ export type UserDataType = {
 	createdAt: Timestamp;
 	updatedAt: Timestamp;
 	tags: string[];
+	displayName: string | null;
 };
 
 export type UserDataClientType = Omit<UserDataType, "tags"> & {

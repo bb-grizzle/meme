@@ -3,5 +3,6 @@ export const ROUTER = {
 	about: "/about",
 	signin: "/signin",
 	signup: "/signup",
+	setting: "/setting",
 	profile: "/profile/[id]",
 };

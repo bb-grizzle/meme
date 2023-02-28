@@ -20,4 +20,8 @@ export const DATA_ERROR = {
 		default: "fail to get profile",
 		exist: "존재하지 않는 사용자 입니다. ",
 	},
+	// setting
+	setting: {
+		default: "fail to setting",
+	},
 };

@@ -1,7 +1,7 @@
 import useUser from "@/provider/AppProvider/useUser";
 import { HomeContext } from "./index";
 import { useContext, useEffect, useState } from "react";
-import fbUpdateUser from "@/lib/firebase/user/fbUpdateUser";
+import fbUpdateUserTag from "@/lib/firebase/user/fbUpdateUserTag";
 
 const useSelectedTag = () => {
 	const { changedTagsIdState } = useContext(HomeContext);
@@ -18,7 +18,7 @@ const useSelectedTag = () => {
 	const applyTag = async () => {
 		try {
 			if (!uid) return;
-			const { ok, tags } = await fbUpdateUser({ changes: changedTagsId, uid });
+			const { ok, tags } = await fbUpdateUserTag({ changes: changedTagsId, uid });
 			if (ok && tags) {
 				updateUserTags(tags);
 				setChangedTagsId([]);
