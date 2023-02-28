@@ -48,8 +48,8 @@ const ApplyBtn = () => {
 	const { isChanged, applyTag, changedTagsId } = useSelectedTag();
 
 	return (
-		<Wrapper active={isChanged} onClick={applyTag}>
-			<ApplyButton text={`Apply ${changedTagsId.length} changes`} mainColor={colorPalette.bw[900]} />
+		<Wrapper active={isChanged}>
+			<ApplyButton text={`Apply ${changedTagsId.length} changes`} mainColor={colorPalette.bw[900]} onClick={applyTag} />
 			<TextWrapper>
 				{changedTagsId.map((el) => {
 					return (

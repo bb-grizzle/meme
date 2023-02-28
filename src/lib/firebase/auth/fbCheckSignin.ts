@@ -27,7 +27,7 @@ const fbCheckSignin: FbCheckSigninType = async () => {
 		if (!email) {
 			return {
 				ok: false,
-				message: DATA_ERROR.signIn.default,
+				message: DATA_ERROR.signIn.browser,
 			};
 		}
 

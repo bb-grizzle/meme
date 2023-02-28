@@ -5,8 +5,8 @@
 		"cleanUrls": true,
 		"rewrites": [
 			{
-				"source": "**",
-				"destination": "/index.html"
+				"destination": "/profile/[id]/index.html",
+				"regex": "^/profile/([^/]+?)(?:/)?$"
 			}
 		]
 	},

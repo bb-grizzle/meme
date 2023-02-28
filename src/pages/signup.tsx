@@ -1,3 +1,4 @@
+import Container from "@/components/shared/Container";
 import { DATA_ERROR } from "@/data/error";
 import PageLayout from "@/layout/PageLayout";
 import fbCheckSignin from "@/lib/firebase/auth/fbCheckSignin";
@@ -38,7 +39,11 @@ const Signup = () => {
 		// eslint-disable-next-line
 	}, [query]);
 
-	return <PageLayout title="Sign Up">signup</PageLayout>;
+	return (
+		<PageLayout title="Sign Up">
+			<Container>loading...</Container>
+		</PageLayout>
+	);
 };
 
 export default Signup;

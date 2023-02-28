@@ -22,6 +22,7 @@ const ProfileView = () => {
 	const { profile } = useProfileData();
 
 	const render = useCallback(() => {
+		console.log(profile);
 		if (profile.loading) {
 			return <>loading...</>;
 		} else if (profile.error) {

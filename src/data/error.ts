@@ -3,6 +3,7 @@ export const DATA_ERROR = {
 	// signin
 	signIn: {
 		default: "이메일 로그인을 실패했어요... 😢",
+		browser: "로그인 시도한 브라우져로 시도해주세요... 😅",
 		url: "잘못된 url 이에요. 😢",
 	},
 	// user
