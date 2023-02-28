@@ -354,3 +354,17 @@ INFO: Detected non-HTTP/2 connection.
 [debug] [2023-02-28T16:53:59.514Z] Mar 01, 2023 1:53:59 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
  {"metadata":{"emulator":{"name":"firestore"},"message":"Mar 01, 2023 1:53:59 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-02-28T16:54:00.085Z] ----------------------------------------------------------------------
+[debug] [2023-02-28T16:54:00.087Z] Command:       /usr/local/bin/firebase /Users/grizzle/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase use default
+[debug] [2023-02-28T16:54:00.087Z] CLI Version:   10.4.2
+[debug] [2023-02-28T16:54:00.087Z] Platform:      darwin
+[debug] [2023-02-28T16:54:00.087Z] Node Version:  v12.18.1
+[debug] [2023-02-28T16:54:00.088Z] Time:          Wed Mar 01 2023 01:54:00 GMT+0900 (Korean Standard Time)
+[debug] [2023-02-28T16:54:00.088Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-02-28T16:54:00.147Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-02-28T16:54:00.147Z] > authorizing via signed-in user (firbigi1993@gmail.com)
+[debug] [2023-02-28T16:54:00.150Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/meme-debug-8bb59 [none]
+[debug] [2023-02-28T16:54:00.602Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/meme-debug-8bb59 200
+[debug] [2023-02-28T16:54:00.602Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/meme-debug-8bb59 {"projectId":"meme-debug-8bb59","projectNumber":"1012906095034","displayName":"meme-debug","name":"projects/meme-debug-8bb59","resources":{"hostingSite":"meme-debug-8bb59","storageBucket":"meme-debug-8bb59.appspot.com","locationId":"asia-northeast3"},"state":"ACTIVE","etag":"1_2692a646-9dab-4251-b97d-60b2a3b4af32"}
+[info] Now using alias default (meme-debug-8bb59)
