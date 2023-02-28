@@ -32,21 +32,19 @@ const fbCheckSignin: FbCheckSigninType = async () => {
 		}
 
 		// 03. sign in with email
+		let user: UserDataClientType = {} as UserDataClientType;
+
 		await signInWithEmailLink(auth, email, window.location.href);
 		window.localStorage.removeItem("emailForSignIn");
 
 		if (auth.currentUser) {
 			const userDoc = await getDoc(doc(firestore, DATA_COLLECTION.USER, auth.currentUser.uid));
 			auth.currentUser.displayName;
-			if (!userDoc.exists()) {
-				const userUpload = { email, tags: [], createdAt: Timestamp.now(), updatedAt: Timestamp.now() };
-				await setDoc(doc(firestore, DATA_COLLECTION.USER, auth.currentUser.uid), userUpload);
-				const user: UserDataClientType = { ...userUpload, uid: auth.currentUser.uid, displayName: auth.currentUser.displayName };
 
-				return {
-					ok: true,
-					user,
-				};
+			if (!userDoc.exists()) {
+				const userUpload = { email, tags: [], createdAt: Timestamp.now(), updatedAt: Timestamp.now(), displayName: email.split("@")[0] };
+				await setDoc(doc(firestore, DATA_COLLECTION.USER, auth.currentUser.uid), userUpload);
+				user = { ...userUpload, uid: auth.currentUser.uid };
 			} else {
 				const userData = userDoc.data();
 
@@ -57,13 +55,13 @@ const fbCheckSignin: FbCheckSigninType = async () => {
 					})
 				);
 
-				const user = { ...userData, uid: auth.currentUser.uid, tags } as UserDataClientType;
-
-				return {
-					ok: true,
-					user,
-				};
+				user = { ...userData, uid: auth.currentUser.uid, tags } as UserDataClientType;
 			}
+
+			return {
+				ok: true,
+				user,
+			};
 		} else {
 			return {
 				ok: false,
@@ -71,6 +69,7 @@ const fbCheckSignin: FbCheckSigninType = async () => {
 			};
 		}
 	} catch (error) {
+		console.log(error);
 		return {
 			ok: false,
 			message: DATA_ERROR.signIn.default,

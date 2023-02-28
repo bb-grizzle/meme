@@ -7,7 +7,7 @@ import SearchDropdown from "./SearchDropdown";
 
 let searchTimeout = setTimeout(() => {}, 0);
 
-const Form = styled.form`
+const Wrapper = styled.div`
 	margin-top: 16px;
 	position: absolute;
 	width: 100%;
@@ -44,11 +44,11 @@ const SearchTag = () => {
 	};
 
 	return (
-		<Form onSubmit={onSubmit}>
+		<Wrapper>
 			<InputText {...searchHook} inputOption={{ ...searchHook.inputOption, onKeyUp, onBlur }} />
 
 			{searchTags.data && <SearchDropdown tags={searchTags.data} createKeyword={createKeyword} />}
-		</Form>
+		</Wrapper>
 	);
 };
 

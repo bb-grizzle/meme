@@ -30,7 +30,7 @@ const ProfileView = () => {
 			return (
 				<Wrapper>
 					<TagWrapper>
-						<UserCore sharedUser={profile.data.tagCount} name={profile.data.email} />
+						<UserCore sharedUser={profile.data.tagCount} name={profile.data.displayName ?? profile.data.email.split("@")[0]} />
 						<ProfileTags tags={profile.data.tags} />
 					</TagWrapper>
 				</Wrapper>

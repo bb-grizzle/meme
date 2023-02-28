@@ -21,7 +21,7 @@ const useIsUnique = () => {
 			const tagIds = user.tags.map((tag) => tag.id);
 			const { ok, count } = await fbIsUnique({ tagIds, uid: user.uid });
 			if (ok && typeof count === "number") {
-				setSharedUser(count);
+				setSharedUser(tagIds.length === 0 ? 0 : count);
 			}
 		} catch (error) {
 			console.log(error);

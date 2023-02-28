@@ -11,7 +11,7 @@ interface SearchDropdownProps {
 const Ul = styled.ul`
 	position: absolute;
 	left: 0;
-	top: calc(100% + 16px);
+	top: 100%;
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;

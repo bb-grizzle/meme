@@ -12,7 +12,8 @@ export const zIndex = {
 	home: {
 		search: 10,
 		tag: 5,
-		viewTags: 50,
+		viewTags: 90,
+		applyBtn: 100,
 	},
 
 	// plan page

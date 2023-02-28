@@ -13,7 +13,7 @@ const MyTags = () => {
 
 	const render = useCallback(() => {
 		if (!user) return "loading...";
-		else if (!user.tags.length) return "there are no tags...";
+		else if (!user.tags.length) return <TagOrbit text={"sample"} key={"tag_sample"} />;
 		else
 			return user.tags.map((tag) => {
 				return <TagOrbit text={tag.keyword} key={tag.id} />;

@@ -38,8 +38,11 @@ const useUser = () => {
 	const updateUser = (user: UserDataClientType) => {
 		setUser((prev) => ({ ...user, tags: prev?.tags ?? [] }));
 	};
+	const updateUserName = (displayName: string) => {
+		setUser((prev) => (prev ? { ...prev, displayName } : prev));
+	};
 
-	return { isLogin, user, changeUser, clearUser, uid: user?.uid, updateUserTags, updateUser };
+	return { isLogin, user, changeUser, clearUser, uid: user?.uid, updateUserTags, updateUser, updateUserName };
 };
 
 export default useUser;

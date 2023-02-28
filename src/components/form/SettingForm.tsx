@@ -26,7 +26,7 @@ const Form = styled.form<{ eventDisabled: boolean }>`
 const SettingForm: React.FC<SettingFormProps> = ({ user }) => {
 	const { updateUser } = useUser();
 	const emailHook = useInputDefault({ inputOption: { disabled: true, value: user.email } });
-	const nameHook = useInputDefault({ inputOption: { maxLength: 20 }, initValue: user.displayName ?? "" });
+	const nameHook = useInputDefault({ inputOption: { maxLength: 20, placeholder: "your nickname" }, initValue: user.displayName ?? "" });
 	const { startLoading, endLoading, loading } = useLoading();
 
 	const onSubmit = async () => {

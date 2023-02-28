@@ -18,7 +18,7 @@ const fbAuthChange = ({ changeUser, clearUser }: FbAuthChangeProps) => {
 			let tags = [];
 			if (userData) {
 				tags = await Promise.all(
-					userData?.tags.map(async (tagId: string) => {
+					userData?.tags?.map(async (tagId: string) => {
 						const tagDoc = await getDoc(doc(firestore, DATA_COLLECTION.TAG, tagId));
 						return { id: tagDoc.id, ...tagDoc.data() };
 					})

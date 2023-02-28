@@ -16,4 +16,5 @@ export type TagDataClientType = TagDataType & {
 export type ChangedTagType = {
 	id: string;
 	active: boolean;
+	keyword: string;
 };

@@ -5,7 +5,7 @@ import PageLayout from "@/layout/PageLayout";
 import useUser from "@/provider/AppProvider/useUser";
 import { ROUTER } from "@/router";
 
-const setting = () => {
+const Setting = () => {
 	const { isLogin, user } = useUser();
 	useRedirect({ condition: isLogin === false, path: ROUTER.signin });
 	return (
@@ -15,4 +15,4 @@ const setting = () => {
 	);
 };
 
-export default setting;
+export default Setting;

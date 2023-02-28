@@ -25,6 +25,8 @@ const useInitHomeContext = (ctx: HomeContextProps) => {
 			} catch (error) {
 				console.log(error);
 				setTags((prev) => ({ ...prev, loading: false, error: DATA_ERROR.tag.default }));
+			} finally {
+				setTags((prev) => ({ ...prev, loading: false }));
 			}
 		};
 		getTags();

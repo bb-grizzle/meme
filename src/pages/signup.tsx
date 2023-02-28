@@ -1,3 +1,4 @@
+import { DATA_ERROR } from "@/data/error";
 import PageLayout from "@/layout/PageLayout";
 import fbCheckSignin from "@/lib/firebase/auth/fbCheckSignin";
 import useUser from "@/provider/AppProvider/useUser";
@@ -7,6 +8,7 @@ import { useEffect } from "react";
 
 const Signup = () => {
 	const { query, push } = useRouter();
+	const { updateUserName } = useUser();
 
 	useEffect(() => {
 		const checkSignin = async () => {
@@ -17,9 +19,18 @@ const Signup = () => {
 			if (mode !== "signIn") push(ROUTER.signin);
 
 			// 02. send fb check signin
-			const { ok } = await fbCheckSignin();
+			const { ok, message, user } = await fbCheckSignin();
 
-			if (ok) {
+			if (!ok) {
+				console.log(message);
+				await alert(message ?? DATA_ERROR.signIn.default);
+				push(ROUTER.signin);
+			}
+
+			if (ok && user) {
+				if (user.displayName) {
+					updateUserName(user.displayName);
+				}
 				push(ROUTER.home);
 			}
 		};

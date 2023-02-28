@@ -13,6 +13,7 @@ const useInitProfileContext = (ctx: ProfileContextProps) => {
 		if (query.id) {
 			getProfile(`${query.id}`);
 		}
+		// eslint-disable-next-line
 	}, [query.id]);
 
 	const getProfile = async (id: string) => {

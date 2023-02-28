@@ -5,23 +5,26 @@ import InputText from "../input/InputText";
 import Button, { BtnTypeEnum } from "../shared/Button";
 import styled from "styled-components";
 import RandBgText from "../shared/RandBgText";
+import useLoading from "@/hook/useLoading";
+import { DATA_ERROR } from "@/data/error";
 
 const Text = styled.p`
 	${(props) => props.theme.colorPalette.bw[700]};
 	margin-bottom: 24px;
-	text-decoration: underline;
 `;
 
 const EmailText = styled(RandBgText)``;
 
 const BtnWrapper = styled.div`
 	display: flex;
+	justify-content: flex-end;
 	gap: 8px;
 `;
 
 const SigninForm = () => {
 	const emailHook = useInputDefault({ inputOption: { name: "email", placeholder: "type your email" } });
 	const [isSend, setIsSend] = useState(false);
+	const { startLoading, endLoading, loading } = useLoading();
 
 	useEffect(() => {
 		return () => {
@@ -30,13 +33,26 @@ const SigninForm = () => {
 	}, []);
 
 	const back = () => {
+		emailHook.clear();
 		setIsSend(false);
 	};
 
 	const sendEmail = async () => {
-		if (!emailHook.value) return;
-		await fbSendSigninLink({ email: `${emailHook.value}` });
-		setIsSend(true);
+		startLoading();
+		try {
+			if (!emailHook.value) return;
+			const { ok, message } = await fbSendSigninLink({ email: `${emailHook.value}` });
+			if (!ok) {
+				alert(message ?? DATA_ERROR.signIn.default);
+				return;
+			} else {
+				setIsSend(true);
+			}
+		} catch (error) {
+			alert(DATA_ERROR.signIn.default);
+		} finally {
+			endLoading();
+		}
 	};
 
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -49,7 +65,9 @@ const SigninForm = () => {
 			{!isSend ? (
 				<>
 					<InputText {...emailHook} />
-					<Button text="send email" iconOption={{ name: "navigate-outline" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={sendEmail} />
+					<BtnWrapper>
+						<Button text="send email" iconOption={{ name: "navigate-outline" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={sendEmail} disabled={loading} />
+					</BtnWrapper>
 				</>
 			) : (
 				<>
@@ -59,7 +77,7 @@ const SigninForm = () => {
 
 					<BtnWrapper>
 						<Button text="type another email" iconOption={{ name: "arrow-back" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={back} />
-						<Button text="resend" iconOption={{ name: "refresh" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={sendEmail} />
+						<Button text="resend" iconOption={{ name: "refresh" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={sendEmail} disabled={loading} />
 					</BtnWrapper>
 				</>
 			)}

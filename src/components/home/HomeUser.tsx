@@ -18,7 +18,7 @@ const HomeUser = () => {
 	const { sharedUser } = useIsUnique();
 	return (
 		<Wrapper>
-			{user && <UserCore sharedUser={Number(sharedUser)} name={user.displayName ?? ""} />}
+			{user && <UserCore sharedUser={Number(sharedUser)} name={user.displayName ?? "you"} />}
 			<MyTags />
 		</Wrapper>
 	);

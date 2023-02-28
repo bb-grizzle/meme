@@ -25,7 +25,7 @@ const useHomeTag = () => {
 			if (checkExist) {
 				return prev.filter((el) => el.id !== selected.id);
 			} else {
-				return [...prev, { id: selected.id, active: !selected.active }];
+				return [...prev, { id: selected.id, active: !selected.active, keyword: selected.keyword }];
 			}
 		});
 	};
