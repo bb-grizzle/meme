@@ -8,10 +8,16 @@ export const DATA_ERROR = {
 	// user
 	user: {
 		default: "사용자 정보를 업데이트 하지 못했어요. ",
-		exist: "없는 사용자 입니다. ",
+		exist: "존재하지 않는 사용자 입니다. ",
 	},
 	// plan
 	tag: {
 		default: "fail to get tag",
+	},
+
+	// profile
+	profile: {
+		default: "fail to get profile",
+		exist: "존재하지 않는 사용자 입니다. ",
 	},
 };
