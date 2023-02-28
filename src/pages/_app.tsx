@@ -1,5 +1,6 @@
 import HeadMeta from "@/components/shared/HeadMeta";
 import AppLayout from "@/layout/AppLayout";
+import MetaLayout from "@/layout/MetaLayout";
 import AppProvider from "@/provider/AppProvider";
 import FirebaseProvider from "@/provider/FirebaseProvider";
 import GlobalStyles from "@/styles/global-styles";
@@ -9,16 +10,18 @@ import { ThemeProvider } from "styled-components";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<AppProvider>
-			<ThemeProvider theme={theme}>
-				<HeadMeta />
-				<GlobalStyles />
-				<FirebaseProvider>
-					<AppLayout>
-						<Component {...pageProps} />
-					</AppLayout>
-				</FirebaseProvider>
-			</ThemeProvider>
-		</AppProvider>
+		<MetaLayout>
+			<AppProvider>
+				<ThemeProvider theme={theme}>
+					<HeadMeta />
+					<GlobalStyles />
+					<FirebaseProvider>
+						<AppLayout>
+							<Component {...pageProps} />
+						</AppLayout>
+					</FirebaseProvider>
+				</ThemeProvider>
+			</AppProvider>
+		</MetaLayout>
 	);
 }
