@@ -1,7 +1,6 @@
 import { TagDataClientType } from "@/types/tag";
 import { AppContext } from ".";
 import { useContext, useEffect } from "react";
-import { User } from "firebase/auth";
 import { UserDataClientType } from "@/types/user";
 
 const useUser = () => {

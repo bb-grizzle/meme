@@ -28,7 +28,7 @@ const useSelectedTag = () => {
 		}
 	};
 
-	return { isChanged, applyTag };
+	return { isChanged, applyTag, changedTagsId };
 };
 
 export default useSelectedTag;

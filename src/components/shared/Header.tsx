@@ -5,8 +5,10 @@ import Logo from "./Logo";
 import MenuBtn from "./MenuBtn";
 
 const HeaderComp = styled.header`
+	position: absolute;
+	width: 100%;
 	height: ${(props) => props.theme.size.header.pc}px;
-
+	z-index: ${(props) => props.theme.zIndex.header};
 	@media ${media.tablet} {
 		height: ${(props) => props.theme.size.header.tablet}px;
 	}

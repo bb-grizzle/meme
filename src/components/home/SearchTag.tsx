@@ -8,7 +8,10 @@ import SearchDropdown from "./SearchDropdown";
 let searchTimeout = setTimeout(() => {}, 0);
 
 const Form = styled.form`
-	position: relative;
+	margin-top: 16px;
+	position: absolute;
+	width: 100%;
+	z-index: ${(props) => props.theme.zIndex.home.search};
 `;
 
 const SearchTag = () => {

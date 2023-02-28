@@ -32,4 +32,7 @@ export const colorPalette = {
 		warn: "#FF5757",
 		line: "#ededed",
 	},
+	tag: {
+		bgColor: ["#4646f5", "#46f58a", "#ffeb3b", "#ff5722", "#3f51b5", "#2196f3", "#f44336"],
+	},
 };

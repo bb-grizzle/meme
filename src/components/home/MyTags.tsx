@@ -1,6 +1,12 @@
 import useUser from "@/provider/AppProvider/useUser";
 import { useCallback } from "react";
-import Tag from "../tag";
+import styled from "styled-components";
+import TagOrbit from "../tag/TagOrbit";
+
+const Wrapper = styled.div`
+	${(props) => props.theme.layout.center_abs};
+	transform-style: preserve-3d;
+`;
 
 const MyTags = () => {
 	const { user } = useUser();
@@ -10,11 +16,11 @@ const MyTags = () => {
 		else if (!user.tags.length) return "there are no tags...";
 		else
 			return user.tags.map((tag) => {
-				return <Tag {...tag} key={tag.id} />;
+				return <TagOrbit text={tag.keyword} key={tag.id} />;
 			});
 	}, [user]);
 
-	return <>{render()}</>;
+	return <Wrapper>{render()}</Wrapper>;
 };
 
 export default MyTags;

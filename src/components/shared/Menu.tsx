@@ -1,6 +1,5 @@
 import fbSignout from "@/lib/firebase/auth/fbSignout";
 import useMenu from "@/provider/AppProvider/useMenu";
-import useUser from "@/provider/AppProvider/useUser";
 import { ROUTER } from "@/router";
 import media from "@/styles/media";
 import IonIcon from "@reacticons/ionicons";

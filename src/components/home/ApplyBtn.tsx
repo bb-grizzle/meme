@@ -1,14 +1,15 @@
 import useSelectedTag from "@/provider/HomeProvider/useSelectedTag";
 import styled, { css } from "styled-components";
+import Button from "../shared/Button";
 
-const Wrapper = styled.button<{ active: boolean }>`
+const Wrapper = styled(Button)<{ active: boolean }>`
 	position: fixed;
 	left: 50%;
 	bottom: 64px;
 	border: 1px solid ${(props) => props.theme.color.black};
 	transition: ${(props) => props.theme.transition.default};
 	transition-property: opacity, transform;
-	padding: 32px;
+	padding: 16px;
 	${(props) => props.theme.style.hoverStyle};
 
 	${(props) =>
@@ -24,13 +25,9 @@ const Wrapper = styled.button<{ active: boolean }>`
 `;
 
 const ApplyBtn = () => {
-	const { isChanged, applyTag } = useSelectedTag();
+	const { isChanged, applyTag, changedTagsId } = useSelectedTag();
 
-	return (
-		<Wrapper active={isChanged} onClick={applyTag}>
-			ApplyBtn
-		</Wrapper>
-	);
+	return <Wrapper active={isChanged} onClick={applyTag} text={`apply ${changedTagsId.length} changes`}></Wrapper>;
 };
 
 export default ApplyBtn;

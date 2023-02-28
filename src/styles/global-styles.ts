@@ -38,6 +38,20 @@ const GlobalStyles = createGlobalStyle`
     list-style:none;
   }
 
+
+  /* IE의 경우 */
+  input::-ms-clear,
+  input::-ms-reveal{
+    display:none;
+  }
+  /* 크롬의 경우 */
+  input::-webkit-search-decoration,
+  input::-webkit-search-cancel-button,
+  input::-webkit-search-results-button,
+  input::-webkit-search-results-decoration{
+    display:none;
+  }
+
   input, select{
     border:none;
     width: 100%;
