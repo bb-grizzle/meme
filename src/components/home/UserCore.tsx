@@ -44,7 +44,7 @@ const UserCore: React.FC<UserCoreProps> = ({ sharedUser, name }) => {
 
 			{sharedUser === 1 ? (
 				<Text>
-					<Name text={name} /> are one and only 😎
+					<Name text={name} /> is one and only 😎
 				</Text>
 			) : sharedUser === 0 ? (
 				<Text>
@@ -53,7 +53,7 @@ const UserCore: React.FC<UserCoreProps> = ({ sharedUser, name }) => {
 				</Text>
 			) : (
 				<Text>
-					{Number(sharedUser) < 21 ? Number(sharedUser) - 1 : "20 over"} people are same with <Name text={name} />
+					{Number(sharedUser) < 21 ? Number(sharedUser) - 1 : "20 over"} {Number(sharedUser) - 1===1? "person is" : "people are"} same with <Name text={name} />
 				</Text>
 			)}
 		</Wrapper>
