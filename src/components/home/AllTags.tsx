@@ -1,11 +1,10 @@
 import useHomeTag from "@/provider/HomeProvider/useHomeTag";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import Tag from "../tag";
 import styled, { css } from "styled-components";
 import Button, { BtnTypeEnum } from "../shared/Button";
 import Container from "../shared/Container";
 import media from "@/styles/media";
-import { ROUTER } from "@/router";
 import useUser from "@/provider/AppProvider/useUser";
 import { DATA_MESSAGE } from "@/data/message";
 
@@ -62,8 +61,7 @@ const TagWrapper = styled.div`
 `;
 
 const AllTags = () => {
-	const { tags, selectTag } = useHomeTag();
-	const [isClicked, setIsClicked] = useState(false);
+	const { tags, selectTag, isAllTagsClick, openAllTags, closeAllTags } = useHomeTag();
 	const { uid } = useUser();
 
 	const onShareClick = async () => {
@@ -91,12 +89,12 @@ const AllTags = () => {
 		<>
 			<BtnWrapper>
 				<ButtonCustom iconOption={{ name: "share-social-outline" }} btnType={BtnTypeEnum.LINE} onClick={onShareClick} />
-				<ButtonCustom iconOption={{ name: "rocket-outline" }} btnType={BtnTypeEnum.LINE} onClick={() => setIsClicked(true)} />
+				<ButtonCustom iconOption={{ name: "rocket-outline" }} btnType={BtnTypeEnum.LINE} onClick={openAllTags} />
 			</BtnWrapper>
-			<Section active={isClicked}>
+			<Section active={isAllTagsClick}>
 				<Container>
 					<Header>
-						<Button iconOption={{ name: "close" }} onClick={() => setIsClicked(false)} />
+						<Button iconOption={{ name: "close" }} onClick={closeAllTags} />
 					</Header>
 					<TagWrapper>{render()}</TagWrapper>
 				</Container>

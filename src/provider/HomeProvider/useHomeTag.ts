@@ -1,14 +1,23 @@
 import { HomeContext } from "./index";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { TagDataClientType } from "@/types/tag";
+import { activeScroll, preventScroll } from "@/util/scroll";
 
 const useHomeTag = () => {
 	// FIELD
-	const { tagsState, changedTagsIdState } = useContext(HomeContext);
+	const { tagsState, changedTagsIdState, isAllTagsClickState } = useContext(HomeContext);
 	const [tags, setTags] = tagsState;
 	const [_, setChangedId] = changedTagsIdState;
+	const [isAllTagsClick, setIsAllTagsClick] = isAllTagsClickState;
 
 	// STATE
+	useEffect(() => {
+		if (isAllTagsClick) {
+			preventScroll();
+		} else {
+			activeScroll();
+		}
+	}, [isAllTagsClick]);
 
 	// METHOD
 	const selectTag = (id: string) => {
@@ -30,7 +39,14 @@ const useHomeTag = () => {
 		});
 	};
 
-	return { tags, selectTag, addChangedId };
+	const openAllTags = () => {
+		setIsAllTagsClick(true);
+	};
+	const closeAllTags = () => {
+		setIsAllTagsClick(false);
+	};
+
+	return { tags, selectTag, addChangedId, openAllTags, isAllTagsClick, closeAllTags };
 };
 
 export default useHomeTag;

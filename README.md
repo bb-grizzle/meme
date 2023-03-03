@@ -4,12 +4,12 @@
 
 ### 2023.03.03
 
-- [ ] og image
+- [x] og image
+- [x] mobile 3d bug
 - [ ] search only english
-- [ ] mobile 3d bug
-- [ ] share image or video
-- [ ] create with enter
 - [ ] display name to unique
+- [ ] create with enter
+- [ ] share image or video
 
 ## todo
 

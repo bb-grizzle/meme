@@ -1,3 +1,4 @@
+import { activeScroll, preventScroll } from "./../../util/scroll";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import { AppContext } from ".";
@@ -10,6 +11,14 @@ const useMenu = () => {
 		closeMenu();
 		// eslint-disable-next-line
 	}, [pathname]);
+
+	useEffect(() => {
+		if (isMenuClicked) {
+			preventScroll();
+		} else {
+			activeScroll();
+		}
+	}, [isMenuClicked]);
 
 	const openMenu = () => setIsMenuClicked(true);
 	const closeMenu = () => setIsMenuClicked(false);

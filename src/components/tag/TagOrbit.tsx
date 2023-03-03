@@ -11,6 +11,7 @@ const Wrapper = styled.div`
 	font-weight: 900;
 	text-transform: uppercase;
 	transform-style: preserve-3d;
+	${(props) => props.theme.event.disable};
 `;
 
 const animationText = (randX: number, randZ: number, randYInit: number) => keyframes`

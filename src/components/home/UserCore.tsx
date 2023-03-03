@@ -1,3 +1,4 @@
+import media from "@/styles/media";
 import styled from "styled-components";
 import RandBgText from "../shared/RandBgText";
 
@@ -53,7 +54,7 @@ const UserCore: React.FC<UserCoreProps> = ({ sharedUser, name }) => {
 				</Text>
 			) : (
 				<Text>
-					{Number(sharedUser) < 21 ? Number(sharedUser) - 1 : "20 over"} {Number(sharedUser) - 1===1? "person is" : "people are"} same with <Name text={name} />
+					{Number(sharedUser) < 21 ? Number(sharedUser) - 1 : "20 over"} {Number(sharedUser) - 1 === 1 ? "person is" : "people are"} same with <Name text={name} />
 				</Text>
 			)}
 		</Wrapper>
