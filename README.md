@@ -8,6 +8,8 @@
 - [ ] search only english
 - [ ] mobile 3d bug
 - [ ] share image or video
+- [ ] create with enter
+- [ ] display name to unique
 
 ## todo
 
@@ -25,7 +27,10 @@
   - [x] signup
   - [x] home : me
   - [x] profile
-  - [ ] about
+        <<<<<<< HEAD
+  - [ ] # about
+  - [x] about
+    > > > > > > > 0cfc847f6e14fedea190f6fcdcf07bded1465f9b
 - [x] api
   - [x] user
     - [x] sign in
