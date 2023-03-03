@@ -1,8 +1,17 @@
 # what makes me ME?!
 
+## update
+
+### 2023.03.03
+
+- [ ] og image
+- [ ] search only english
+- [ ] mobile 3d bug
+- [ ] share image or video
+
 ## todo
 
-- [ ] project setting
+- [x] project setting
   - [x] next.js
   - [x] styled component
   - [x] firebase
@@ -14,16 +23,16 @@
   - [x] app : share
   - [x] signin
   - [x] signup
-  - [ ] home : me
-  - [ ] profile
-  - [ ] about
-- [ ] api
+  - [x] home : me
+  - [x] profile
+  - [x] about
+- [x] api
   - [x] user
     - [x] sign in
     - [x] sign out
-  - [ ] tag
-    - [ ] get
-    - [ ] post
-  - [ ] me
-    - [ ] isUnique : check my tag is unique
-    - [ ] eidt : edit my tag
+  - [x] tag
+    - [x] get
+    - [x] post
+  - [x] me
+    - [x] isUnique : check my tag is unique
+    - [x] edit : edit my tag

@@ -2,16 +2,24 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on PR
-'on': pull_request
+"on": pull_request
+env:
+  NEXT_PUBLIC_APIKEY: "${{secrets.NEXT_PUBLIC_APIKEY}}"
+  NEXT_PUBLIC_AUTHDOMAIN: "${{secrets.NEXT_PUBLIC_AUTHDOMAIN}}"
+  NEXT_PUBLIC_PROJECTID: "${{secrets.NEXT_PUBLIC_PROJECTID}}"
+  NEXT_PUBLIC_STORAGEBUCKET: "${{secrets.NEXT_PUBLIC_STORAGEBUCKET}}"
+  NEXT_PUBLIC_MESSAGINGSENDERID: "${{secrets.NEXT_PUBLIC_MESSAGINGSENDERID}}"
+  NEXT_PUBLIC_APPID: "${{secrets.NEXT_PUBLIC_APPID}}"
+  NEXT_PUBLIC_MEASUREMENTID: "${{secrets.NEXT_PUBLIC_MEASUREMENTID}}"
 jobs:
   build_and_preview:
-    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+    if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm run build
+      - run: npm install && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MEME_DEBUG_8BB59 }}'
-          projectId: meme-debug-8bb59
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_MEME_2D572 }}"
+          projectId: meme-2d572
