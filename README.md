@@ -8,6 +8,8 @@
 - [ ] search only english
 - [ ] mobile 3d bug
 - [ ] share image or video
+- [ ] create with enter
+- [ ] display name to unique
 
 ## todo
 
