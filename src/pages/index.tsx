@@ -8,6 +8,7 @@ import PageLayout from "@/layout/PageLayout";
 import useUser from "@/provider/AppProvider/useUser";
 import HomeProvider from "@/provider/HomeProvider";
 import { ROUTER } from "@/router";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 const ContainerCustom = styled(Container)`

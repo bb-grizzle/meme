@@ -15,7 +15,10 @@ const Wrapper = styled.div`
 `;
 
 const SearchTag = () => {
-	const searchHook = useInputDefault({ inputOption: { name: "search", placeholder: "search your tag", type: "search" } });
+	const searchHook = useInputDefault({
+		inputOption: { name: "search", placeholder: "search your tag", type: "search" },
+		format: (val) => `${val}`.replaceAll(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g, ""),
+	});
 	const { createTag, searchTags, findSearchTags } = useHomeSearch();
 
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -45,7 +48,7 @@ const SearchTag = () => {
 
 	return (
 		<Wrapper>
-			<InputText {...searchHook} inputOption={{ ...searchHook.inputOption, onKeyUp, onBlur }} />
+			<InputText {...searchHook} onEnter={() => console.log("enter")} inputOption={{ ...searchHook.inputOption, onKeyUp, onBlur }} />
 
 			{searchTags.data && <SearchDropdown tags={searchTags.data} createKeyword={createKeyword} />}
 		</Wrapper>

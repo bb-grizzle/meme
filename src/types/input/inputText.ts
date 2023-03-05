@@ -12,6 +12,7 @@ export type UseInputTextProps = {
 	initValue?: ValueType;
 	onEnter?: () => void;
 	validation?: ValidationType;
+	format?: (value: ValueType) => ValueType;
 };
 
 export type UseInputTextResult = UseInputTextProps & {

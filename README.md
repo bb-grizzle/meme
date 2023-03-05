@@ -6,7 +6,8 @@
 
 - [x] og image
 - [x] mobile 3d bug
-- [ ] search only english
+- [x] search only english
+- [ ] render issue
 - [ ] display name to unique
 - [ ] create with enter
 - [ ] share image or video
