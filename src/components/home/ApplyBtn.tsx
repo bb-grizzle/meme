@@ -1,5 +1,6 @@
 import useSelectedTag from "@/provider/HomeProvider/useSelectedTag";
 import { colorPalette } from "@/styles/theme/colorPalette";
+import { useCallback } from "react";
 import styled, { css } from "styled-components";
 import Button from "../shared/Button";
 
@@ -47,17 +48,24 @@ const Text = styled.p`
 const ApplyBtn = () => {
 	const { isChanged, applyTag, changedTagsId } = useSelectedTag();
 
+	const renderChanges = useCallback(() => {
+		return changedTagsId
+			.filter((_, index) => index < 3)
+			.map((el) => {
+				return (
+					<Text key={el.id}>
+						{el.active ? "+" : "-"} {el.keyword}
+					</Text>
+				);
+			});
+	}, [changedTagsId]);
+
 	return (
 		<Wrapper active={isChanged}>
 			<ApplyButton text={`Apply ${changedTagsId.length} changes`} mainColor={colorPalette.bw[900]} onClick={applyTag} />
 			<TextWrapper>
-				{changedTagsId.map((el) => {
-					return (
-						<Text key={el.id}>
-							{el.active ? "+" : "-"} {el.keyword}
-						</Text>
-					);
-				})}
+				{renderChanges()}
+				{changedTagsId.length > 3 && <Text>... and {changedTagsId.length - 3} more</Text>}
 			</TextWrapper>
 		</Wrapper>
 	);
