@@ -74,7 +74,7 @@ const TagOrbit: React.FC<TagOrbitProps> = ({ text }) => {
 	const [randZ] = useState(Math.random() * 180 - 90); //Math.random() * 180 - 90;
 	const [randYInit] = useState(Math.random() * 360); //Math.random() * 180 - 90;
 	const [duration] = useState(Math.random() * 15 + 5); //5~20
-	const bgColor = colorPalette.tag.bgColor[Math.floor(Math.random() * colorPalette.tag.bgColor.length)];
+	const [bgColor] = useState(colorPalette.tag.bgColor[Math.floor(Math.random() * colorPalette.tag.bgColor.length)]);
 
 	return (
 		<Wrapper>
