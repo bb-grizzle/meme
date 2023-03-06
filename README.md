@@ -7,10 +7,9 @@
 - [x] og image
 - [x] mobile 3d bug
 - [x] search only english
-- [ ] render issue
-- [ ] display name to unique
-- [ ] create with enter
-- [ ] share image or video
+- [x] render issue
+- [x] display name to unique
+- [x] create with enter
 
 ## todo
 

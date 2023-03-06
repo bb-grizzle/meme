@@ -65,7 +65,14 @@ const SettingForm: React.FC<SettingFormProps> = ({ user }) => {
 			<InputText {...emailHook} value={user.email} />
 			<InputText {...nameHook} />
 			<BtnWrapper>
-				<Button type="submit" text="done" iconOption={{ name: loading ? "ellipsis-horizontal" : "checkbox-outline" }} btnType={BtnTypeEnum.LINE} onClick={onSubmit} disabled={loading} />
+				<Button
+					type="submit"
+					text="done"
+					iconOption={{ name: loading ? "ellipsis-horizontal" : "checkbox-outline" }}
+					btnType={BtnTypeEnum.LINE}
+					onClick={onSubmit}
+					disabled={loading || nameHook.value === user.displayName}
+				/>
 			</BtnWrapper>
 		</Form>
 	);

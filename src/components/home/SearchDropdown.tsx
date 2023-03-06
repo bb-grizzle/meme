@@ -21,7 +21,11 @@ const Ul = styled.ul`
 const Li = styled.li`
 	font-weight: 100;
 	${(props) => props.theme.style.hoverStyle};
-	${(props) => props.theme.style.hoverStyle};
+`;
+
+const TagCreate = styled(Tag)`
+	border: 1px solid ${(props) => props.theme.colorPalette.bw[900]};
+	color: ${(props) => props.theme.colorPalette.bw[900]};
 `;
 
 const SearchDropdown: React.FC<SearchDropdownProps> = ({ tags, createKeyword }) => {
@@ -35,7 +39,7 @@ const SearchDropdown: React.FC<SearchDropdownProps> = ({ tags, createKeyword }) 
 		<Ul>
 			{!tags.length && (
 				<Li onClick={createKeyword}>
-					<Tag keyword="create new" id="tag-create" />
+					<TagCreate keyword="+ create new" id="tag-create" />
 				</Li>
 			)}
 			{tags.map((tag) => {

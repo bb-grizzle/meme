@@ -21,11 +21,6 @@ const SearchTag = () => {
 	});
 	const { createTag, searchTags, findSearchTags } = useHomeSearch();
 
-	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		createKeyword();
-	};
-
 	const createKeyword = async () => {
 		if (!searchHook.value) return;
 		await createTag(`${searchHook.value}`);
@@ -46,9 +41,15 @@ const SearchTag = () => {
 		}, 500);
 	};
 
+	const onEnter = () => {
+		if (searchTags.data?.length === 0) {
+			createKeyword();
+		}
+	};
+
 	return (
 		<Wrapper>
-			<InputText {...searchHook} onEnter={() => console.log("enter")} inputOption={{ ...searchHook.inputOption, onKeyUp, onBlur }} />
+			<InputText {...searchHook} onEnter={onEnter} inputOption={{ ...searchHook.inputOption, onKeyUp, onBlur }} />
 
 			{searchTags.data && <SearchDropdown tags={searchTags.data} createKeyword={createKeyword} />}
 		</Wrapper>
