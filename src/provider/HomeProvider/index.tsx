@@ -11,6 +11,7 @@ export type HomeContextProps = {
 	tagsState: [DataType<TagDataClientType[]>, Dispatch<SetStateAction<DataType<TagDataClientType[]>>>];
 	searchTagsState: [DataType<TagDataClientType[]>, Dispatch<SetStateAction<DataType<TagDataClientType[]>>>];
 	changedTagsIdState: [ChangedTagType[], Dispatch<SetStateAction<ChangedTagType[]>>];
+	isAllTagsClickState: [boolean, Dispatch<SetStateAction<boolean>>];
 };
 
 export const HomeContext = createContext({} as HomeContextProps);
@@ -19,8 +20,9 @@ const HomeProvider: React.FC<HomeProviderProps> = ({ children }) => {
 	const tagsState = useState<DataType<TagDataClientType[]>>(DATA_TEMPLATE);
 	const searchTagsState = useState<DataType<TagDataClientType[]>>(DATA_TEMPLATE);
 	const changedTagsIdState = useState<ChangedTagType[]>([]);
+	const isAllTagsClickState = useState<boolean>(false);
 
-	const value: HomeContextProps = { tagsState, searchTagsState, changedTagsIdState };
+	const value: HomeContextProps = { tagsState, searchTagsState, changedTagsIdState, isAllTagsClickState };
 
 	useInitHomeContext(value);
 

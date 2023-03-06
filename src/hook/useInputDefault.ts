@@ -4,7 +4,7 @@ import { UseInputTextType } from "../types/input/inputText";
 
 const useInputDefault: UseInputTextType = (props) => {
 	// FIELD
-	const { initValue, validation, inputOption } = props;
+	const { initValue, validation, inputOption, format } = props;
 	const [value, setValue] = useState(initValue);
 	const [isError, setIsError] = useState(false);
 	const [errorMessage, setErrorMessage] = useState(validation ? DATA_VALIDATION[validation].error : "");
@@ -18,7 +18,8 @@ const useInputDefault: UseInputTextType = (props) => {
 	// : on change
 	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setIsError(false);
-		setValue(e.target.value);
+		const newValue = format?.(e.target.value) ?? e.target.value;
+		setValue(newValue);
 	};
 
 	// : on match

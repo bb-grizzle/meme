@@ -4,12 +4,13 @@
 
 ### 2023.03.03
 
-- [ ] og image
-- [ ] search only english
-- [ ] mobile 3d bug
-- [ ] share image or video
-- [ ] create with enter
+- [x] og image
+- [x] mobile 3d bug
+- [x] search only english
+- [ ] render issue
 - [ ] display name to unique
+- [ ] create with enter
+- [ ] share image or video
 
 ## todo
 
@@ -28,9 +29,12 @@
   - [x] home : me
   - [x] profile
         <<<<<<< HEAD
+        <<<<<<< HEAD
   - [ ] # about
+  - [x] about > > > > > > > 0cfc847f6e14fedea190f6fcdcf07bded1465f9b
+        =======
   - [x] about
-    > > > > > > > 0cfc847f6e14fedea190f6fcdcf07bded1465f9b
+    > > > > > > > f518a8bdfaa4915dc84f5a82a07faf13769d9aa9
 - [x] api
   - [x] user
     - [x] sign in

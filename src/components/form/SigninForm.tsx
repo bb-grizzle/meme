@@ -7,6 +7,7 @@ import styled from "styled-components";
 import RandBgText from "../shared/RandBgText";
 import useLoading from "@/hook/useLoading";
 import { DATA_ERROR } from "@/data/error";
+import media from "@/styles/media";
 
 const Text = styled.p`
 	${(props) => props.theme.colorPalette.bw[700]};
@@ -19,6 +20,10 @@ const BtnWrapper = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	gap: 8px;
+
+	@media ${media.mobile} {
+		flex-direction: column;
+	}
 `;
 
 const SigninForm = () => {
@@ -76,8 +81,8 @@ const SigninForm = () => {
 					</Text>
 
 					<BtnWrapper>
-						<Button text="type another email" iconOption={{ name: "arrow-back" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={back} />
-						<Button text="resend" iconOption={{ name: "refresh" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={sendEmail} disabled={loading} />
+						<Button text="type another email" iconOption={{ name: "arrow-back" }} reverse={false} btnType={BtnTypeEnum.LINE} onClick={back} />
+						<Button text="resend" iconOption={{ name: "refresh" }} reverse={false} btnType={BtnTypeEnum.LINE} onClick={sendEmail} disabled={loading} />
 					</BtnWrapper>
 				</>
 			)}
