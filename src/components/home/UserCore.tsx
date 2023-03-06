@@ -1,3 +1,4 @@
+import media from "@/styles/media";
 import styled from "styled-components";
 import RandBgText from "../shared/RandBgText";
 

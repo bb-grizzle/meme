@@ -7,10 +7,9 @@
 - [x] og image
 - [x] mobile 3d bug
 - [x] search only english
-- [ ] render issue
-- [ ] display name to unique
-- [ ] create with enter
-- [ ] share image or video
+- [x] render issue
+- [x] display name to unique
+- [x] create with enter
 
 ## todo
 
@@ -30,11 +29,14 @@
   - [x] profile
         <<<<<<< HEAD
         <<<<<<< HEAD
+        <<<<<<< HEAD
   - [ ] # about
   - [x] about > > > > > > > 0cfc847f6e14fedea190f6fcdcf07bded1465f9b
         =======
+  - [x] about > > > > > > > f518a8bdfaa4915dc84f5a82a07faf13769d9aa9
+        =======
   - [x] about
-    > > > > > > > f518a8bdfaa4915dc84f5a82a07faf13769d9aa9
+    > > > > > > > 6352d80401a5db9162e52fdb35f154e4e59a804d
 - [x] api
   - [x] user
     - [x] sign in
