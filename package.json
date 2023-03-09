@@ -3,20 +3,22 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "firebase use default && next dev",
-		"build": "npm run lint && npx next build && npx next export",
+		"dev": "firebase use default && env-cmd -f ./env/development.env next dev",
+		"build:dev": "npm run lint && env-cmd -f ./env/development.env npx next build && npx next export",
+		"build:prod": "npm run lint && env-cmd -f ./env/production.env npx next build && npx next export",
 		"start": "npx next start",
 		"lint": "npx next lint",
 		"emulator": "firebase emulators:start --import ./firebase-seed --export-on-exit",
 		"deploy": "npm run deploy:dev && npm run deploy:stage && npm run deploy:prod",
-		"deploy:dev": "npm run build && firebase use default && firebase deploy --only hosting",
-		"deploy:stage": "npm run build && firebase use prod && firebase hosting:channel:deploy stage",
-		"deploy:prod": "npm run build && firebase use prod && firebase deploy --only hosting"
+		"deploy:dev": "npm run build:dev && firebase use default && firebase deploy --only hosting && firebase deploy --only firestore:rules",
+		"deploy:stage": "npm run build:prod && firebase use prod && firebase hosting:channel:deploy stage && firebase deploy --only firestore:rules",
+		"deploy:prod": "npm run build:prod && firebase use prod && firebase deploy --only hosting && firebase deploy --only firestore:rules"
 	},
 	"dependencies": {
 		"@next/font": "13.1.6",
 		"@reacticons/ionicons": "^6.1.1",
 		"@types/react-dom": "18.0.10",
+		"env-cmd": "^10.1.0",
 		"eslint": "8.34.0",
 		"eslint-config-next": "13.1.6",
 		"firebase": "^9.17.1",

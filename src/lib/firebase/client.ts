@@ -16,20 +16,20 @@ const firebaseConfig = {
 	measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID,
 };
 
-let analytics = {} as Analytics;
-
 const initFirebase = () => {
 	const nowApp = getApps();
 	if (!nowApp.length) {
 		const app = initializeApp(firebaseConfig);
-		isSupported().then((result) => {
-			analytics = getAnalytics(app);
-		});
-
 		return app;
 	} else {
 		return nowApp[0];
 	}
+};
+
+export const initAnalytics = () => {
+	isSupported().then((result) => {
+		getAnalytics(app);
+	});
 };
 
 const app = initFirebase();
@@ -49,4 +49,4 @@ if (process.env.NODE_ENV === "development") {
 	}
 }
 
-export { auth, firestore, storage, analytics };
+export { auth, firestore, storage };

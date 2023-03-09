@@ -13,20 +13,15 @@
 	"emulators": {
 		"auth": {
 			"port": 9099
-			// "host": "192.168.0.56"
 		},
 		"firestore": {
-			"port": 8080,
-			"rules": "firestore.rules"
-			// "host": "192.168.0.56"
+			"port": 8080
 		},
 		"hosting": {
 			"port": 5001
-			// "host": "192.168.0.56"
 		},
 		"storage": {
 			"port": 9199
-			// "host": "192.168.0.56"
 		},
 		"ui": {
 			"enabled": true
