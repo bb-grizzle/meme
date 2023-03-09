@@ -37,11 +37,10 @@ const BtnWrapper = styled.div`
 `;
 
 const SigninForm = () => {
-	const emailHook = useInputDefault({ initValue: "taeng93@naver.com", inputOption: { name: "email", placeholder: "type your email" }, validation: ValidationType.EMAIL });
-	const pwHook = useInputDefault({ initValue: "Dbs279756*", inputOption: { name: "password", placeholder: "type your password", type: "password" }, validation: ValidationType.PW });
+	const emailHook = useInputDefault({ inputOption: { name: "email", placeholder: "type your email" }, validation: ValidationType.EMAIL });
+	const pwHook = useInputDefault({ inputOption: { name: "password", placeholder: "type your password", type: "password" }, validation: ValidationType.PW });
 	const [isEmailExist, setIsEmailExist] = useState<null | boolean>(null);
 	const { startLoading, endLoading, loading } = useLoading();
-	const { updateUserName } = useUser();
 
 	// STATE
 	useEffect(() => {
@@ -93,17 +92,11 @@ const SigninForm = () => {
 			}
 			if (!pwHook.checkValidation()) return false;
 
-			const { ok, message, user } = await fbSignInWithEmail({ email: `${emailHook.value}`, password: `${pwHook.value}` });
+			const { ok, message } = await fbSignInWithEmail({ email: `${emailHook.value}`, password: `${pwHook.value}` });
 
 			if (!ok) {
 				alert(message ?? DATA_ERROR.signIn.default);
 				return;
-			}
-
-			if (ok && user) {
-				if (user.displayName) {
-					updateUserName(user.displayName);
-				}
 			}
 		} catch (error) {
 			alert(DATA_ERROR.signIn.default);
@@ -126,17 +119,11 @@ const SigninForm = () => {
 			}
 			if (!pwHook.checkValidation()) return false;
 
-			const { ok, message, user } = await fbSignUpWithEmail({ email: `${emailHook.value}`, password: `${pwHook.value}` });
+			const { ok, message } = await fbSignUpWithEmail({ email: `${emailHook.value}`, password: `${pwHook.value}` });
 
 			if (!ok) {
 				alert(message ?? DATA_ERROR.signIn.default);
 				return;
-			}
-
-			if (ok && user) {
-				if (user.displayName) {
-					updateUserName(user.displayName);
-				}
 			}
 		} catch (error) {
 			alert(DATA_ERROR.signIn.default);
@@ -241,7 +228,7 @@ const SigninForm = () => {
 			{renderText()}
 			<Form onSubmit={onSubmit}>
 				<InputText {...emailHook} inputOption={{ ...emailHook.inputOption, disabled: loading }} />
-				{isEmailExist !== null && <InputText {...pwHook} inputOption={{ ...pwHook.inputOption, disabled: loading }} onEnter={onSubmit} />}
+				{isEmailExist !== null && <InputText {...pwHook} inputOption={{ ...pwHook.inputOption, disabled: loading, autoFocus: true }} onEnter={onSubmit} />}
 
 				<BtnWrapper>{renderBtn()}</BtnWrapper>
 			</Form>

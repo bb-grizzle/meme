@@ -3,6 +3,9 @@ type DataErrorType = {
 };
 
 export const DATA_ERROR: DataErrorType = {
+	normal: {
+		default: "서버에 문제가 생겼어요... 🥲",
+	},
 	sendEmail: { default: "이메일 전송을 실패했어요... 😭" },
 	// signin
 	signIn: {
@@ -11,6 +14,7 @@ export const DATA_ERROR: DataErrorType = {
 		url: "잘못된 url 이에요. 😢",
 		checkUser: "유저 정보를 확인하지 못했어요... 😢",
 		"auth/invalid-email": "로그인이 불가능한 이메일 입니다... 😅",
+		"auth/wrong-password": "비밀번호가 틀렸네요... 😅",
 	},
 	signUp: {
 		default: "회원가입을 실패했어요... 😤",
@@ -40,6 +44,7 @@ export const DATA_ERROR: DataErrorType = {
 	},
 	// setting
 	setting: {
-		default: "fail to setting",
+		default: "설정을 변경하지 못했어요... 🧰",
+		changeDisplayName: "이름을 변경하지 못했어요... 🐧 ",
 	},
 };

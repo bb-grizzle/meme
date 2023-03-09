@@ -29,10 +29,10 @@ const About = () => {
 			<Container>
 				{isEn ? (
 					<Text>
-						<Small>The project was created under the theme of February's Newzins-OMG during group D-semicolon's monthly project. </Small>
+						<Small>The project was created under the theme of February&apos;s Newzins-OMG during group D-semicolon&apos;s monthly project. </Small>
 						<br />
-						<RandBgText text="What makes you YOU" /> There are many ways to explain 'me', such as people living in Seoul, designers, and people with scars on their left arm. But We don't know if these
-						words really refer to me. Uncertain.
+						<RandBgText text="What makes you YOU" /> There are many ways to explain &apos;me&apos;, such as people living in Seoul, designers, and people with scars on their left arm. But We
+						don&apos;t know if these words really refer to me. Uncertain.
 						<RandBgText text="meme" /> is a website that shows how to express myself uniquely through writing. <br />
 						have fun ! 😀
 					</Text>

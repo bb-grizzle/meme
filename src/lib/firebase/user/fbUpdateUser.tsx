@@ -51,6 +51,7 @@ const fbUpdateUser: FbUpdateUserType = async ({ data, uid }) => {
 
 		return { ok: true, user };
 	} catch (error) {
+		console.log(error);
 		return { ok: false, message: DATA_ERROR.setting.default };
 	}
 };

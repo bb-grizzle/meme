@@ -18,11 +18,10 @@ type FbSignInWithEmailResult = ResolverReturnType & {
 
 const fbSignInWithEmail: FbSignInWithEmailType = async ({ email, password }) => {
 	try {
-		const userCredential = await signInWithEmailAndPassword(auth, email, password);
-		const { user } = await createOrReadUser({ uid: userCredential.user.uid, email });
+		await signInWithEmailAndPassword(auth, email, password);
+
 		return {
 			ok: true,
-			user,
 		};
 	} catch (error: any) {
 		console.log(error);

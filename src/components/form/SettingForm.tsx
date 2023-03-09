@@ -8,7 +8,7 @@ import useUser from "@/provider/AppProvider/useUser";
 import useLoading from "@/hook/useLoading";
 import { DATA_MESSAGE } from "@/data/message";
 import { DATA_ERROR } from "@/data/error";
-
+const MESSAGE_EMPTY = "* Empty";
 interface SettingFormProps {
 	user: UserDataClientType;
 }
@@ -21,6 +21,9 @@ const BtnWrapper = styled.div`
 
 const Form = styled.form<{ eventDisabled: boolean }>`
 	${(props) => (props.eventDisabled ? props.theme.event.disable : props.theme.event.active)};
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
 `;
 
 const SettingForm: React.FC<SettingFormProps> = ({ user }) => {
@@ -30,33 +33,37 @@ const SettingForm: React.FC<SettingFormProps> = ({ user }) => {
 	const { startLoading, endLoading, loading } = useLoading();
 
 	const onSubmit = async () => {
-		startLoading();
-		if (nameHook.value && typeof nameHook.value === "string") {
-			try {
-				const {
-					ok,
-					message,
-					user: updatedUser,
-				} = await fbUpdateUser({
-					uid: user.uid,
-					data: {
-						displayName: nameHook.value,
-					},
-				});
-				if (!ok) {
-					await alert(message ?? DATA_ERROR.setting.default);
-					return;
-				}
-				if (ok && updatedUser) {
-					await updateUser(updatedUser);
-					await alert(DATA_MESSAGE.setting.success);
-					return;
-				}
-			} catch (error) {
-				await alert(DATA_ERROR.setting.default);
-			} finally {
-				endLoading();
+		try {
+			startLoading();
+			if (!nameHook.value) {
+				nameHook.changeErrorMessage(MESSAGE_EMPTY);
+				return;
 			}
+			if (typeof nameHook.value !== "string") return;
+			const {
+				ok,
+				message,
+				user: updatedUser,
+			} = await fbUpdateUser({
+				uid: user.uid,
+				data: {
+					displayName: nameHook.value,
+				},
+			});
+			if (!ok) {
+				await alert(message ?? DATA_ERROR.setting.changeDisplayName);
+				return;
+			}
+			if (ok && updatedUser) {
+				await updateUser(updatedUser);
+				await alert(DATA_MESSAGE.setting.success);
+				return;
+			}
+		} catch (error) {
+			console.log(error);
+			await alert(DATA_ERROR.setting.default);
+		} finally {
+			endLoading();
 		}
 	};
 

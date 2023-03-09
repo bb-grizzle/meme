@@ -6,9 +6,9 @@
 
 - [x] sign up with password
 - [x] find password
-- [ ] update about
-- [ ] og image
-- [ ] firebase rules
+- [x] update about
+- [x] firebase rules
+- [ ] firebase analytics
 
 ### 2023.03.03
 
