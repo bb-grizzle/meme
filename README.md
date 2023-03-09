@@ -4,9 +4,11 @@
 
 ### 2023.03.09
 
+- [x] sign up with password
+- [x] find password
 - [ ] update about
-- [ ] sign up with password
 - [ ] og image
+- [ ] firebase rules
 
 ### 2023.03.03
 

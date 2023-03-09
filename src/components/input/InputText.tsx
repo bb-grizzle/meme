@@ -18,7 +18,6 @@ const Label = styled.p`
 
 const InputWrapper = styled.div`
 	position: relative;
-	margin-bottom: 12px;
 `;
 
 const Input = styled.input`
@@ -29,20 +28,13 @@ const Input = styled.input`
 	appearance: none;
 `;
 
-const DivCustom = styled(Div)<{ isError: boolean }>`
-	&:after {
-		${(props) =>
-			props.isError &&
-			css`
-				background-color: red;
-			`};
-	}
+const NoteWrapper = styled.div`
+	margin-top: 8px;
+	padding: 0 16px;
 `;
 
-const NoteWrapper = styled.div``;
-
 const Note = styled.p<{ isError: boolean }>`
-	${(props) => props.theme.fontStyle.body.medium};
+	${(props) => props.theme.fontStyle.body.small};
 	color: ${(props) => (props.isError ? props.theme.colorPalette.sub.warn : props.theme.colorPalette.bw[400])};
 `;
 

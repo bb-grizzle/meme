@@ -4,12 +4,6 @@ import useRedirect from "@/hook/useRedirect";
 import PageLayout from "@/layout/PageLayout";
 import useUser from "@/provider/AppProvider/useUser";
 import { ROUTER } from "@/router";
-import styled from "styled-components";
-
-const Text = styled.p`
-	${(props) => props.theme.fontStyle.body.large};
-	margin-bottom: 20px;
-`;
 
 const Signin = () => {
 	const { isLogin } = useUser();
@@ -18,7 +12,6 @@ const Signin = () => {
 	return (
 		<PageLayout title="Sign In">
 			<Container>
-				<Text>before start, you need to sign in ...😀 </Text>
 				<SigninForm />
 			</Container>
 		</PageLayout>

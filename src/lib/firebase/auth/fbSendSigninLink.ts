@@ -27,11 +27,9 @@ const fbSendSigninLink: FbSigninType = async ({ email }) => {
 			ok: true,
 		};
 	} catch (error: any) {
-		console.log(error);
-
 		return {
 			ok: false,
-			message: DATA_ERROR.sendEmail,
+			message: DATA_ERROR.signin[error.code] || DATA_ERROR.signin.default,
 		};
 	}
 };
