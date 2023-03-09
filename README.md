@@ -2,6 +2,12 @@
 
 ## update
 
+### 2023.03.09
+
+- [ ] update about
+- [ ] sign up with password
+- [ ] og image
+
 ### 2023.03.03
 
 - [x] og image
