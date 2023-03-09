@@ -1,9 +1,11 @@
+import useMenu from "@/provider/AppProvider/useMenu";
 import useSelectedTag from "@/provider/HomeProvider/useSelectedTag";
 import { colorPalette } from "@/styles/theme/colorPalette";
+import { useCallback } from "react";
 import styled, { css } from "styled-components";
 import Button from "../shared/Button";
 
-const Wrapper = styled.div<{ active: boolean }>`
+const Wrapper = styled.div<{ active: boolean; hide: boolean }>`
 	position: fixed;
 	left: 50%;
 	bottom: 64px;
@@ -17,6 +19,7 @@ const Wrapper = styled.div<{ active: boolean }>`
 	border-radius: 8px;
 
 	z-index: ${(props) => props.theme.zIndex.home.applyBtn};
+	display: ${(props) => (props.hide ? "none" : "block")};
 
 	${(props) =>
 		!props.active
@@ -46,18 +49,26 @@ const Text = styled.p`
 
 const ApplyBtn = () => {
 	const { isChanged, applyTag, changedTagsId } = useSelectedTag();
+	const { isMenuClicked } = useMenu();
+
+	const renderChanges = useCallback(() => {
+		return changedTagsId
+			.filter((_, index) => index < 3)
+			.map((el) => {
+				return (
+					<Text key={el.id}>
+						{el.active ? "+" : "-"} {el.keyword}
+					</Text>
+				);
+			});
+	}, [changedTagsId]);
 
 	return (
-		<Wrapper active={isChanged}>
+		<Wrapper active={isChanged} hide={isMenuClicked}>
 			<ApplyButton text={`Apply ${changedTagsId.length} changes`} mainColor={colorPalette.bw[900]} onClick={applyTag} />
 			<TextWrapper>
-				{changedTagsId.map((el) => {
-					return (
-						<Text key={el.id}>
-							{el.active ? "+" : "-"} {el.keyword}
-						</Text>
-					);
-				})}
+				{renderChanges()}
+				{changedTagsId.length > 3 && <Text>... and {changedTagsId.length - 3} more</Text>}
 			</TextWrapper>
 		</Wrapper>
 	);

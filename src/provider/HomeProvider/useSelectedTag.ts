@@ -4,8 +4,9 @@ import { useContext, useEffect, useState } from "react";
 import fbUpdateUserTag from "@/lib/firebase/user/fbUpdateUserTag";
 
 const useSelectedTag = () => {
-	const { changedTagsIdState } = useContext(HomeContext);
+	const { changedTagsIdState, isAllTagsClickState } = useContext(HomeContext);
 	const [changedTagsId, setChangedTagsId] = changedTagsIdState;
+	const [_, setIsAllTagsClick] = isAllTagsClickState;
 	const [isChanged, setIsChanged] = useState(false);
 	const { uid, updateUserTags } = useUser();
 
@@ -25,6 +26,8 @@ const useSelectedTag = () => {
 			}
 		} catch (error) {
 			console.log(error);
+		} finally {
+			setIsAllTagsClick(false);
 		}
 	};
 

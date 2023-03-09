@@ -1,1 +1,27 @@
-{"kind":"identitytoolkit#DownloadAccountResponse","users":[{"localId":"G59OwH1LSU7nt8UIBk7TF9Dj9Dui","createdAt":"1677596911681","lastLoginAt":"1678086190861","providerUserInfo":[{"providerId":"password","email":"firbigi1993@gmail.com","federatedId":"firbigi1993@gmail.com","rawId":"firbigi1993@gmail.com"}],"validSince":"1678086113","email":"firbigi1993@gmail.com","emailVerified":true,"disabled":false,"emailLinkSignin":true,"lastRefreshAt":"2023-03-06T07:03:10.861Z"},{"localId":"QJ2AxgiV0WMTW3GSTgtVJAWo0t6n","createdAt":"1677594598884","lastLoginAt":"1677594598884","providerUserInfo":[],"validSince":"1678086113","email":"taeng93@naver.com","emailVerified":true,"disabled":false}]}
+{
+	"kind": "identitytoolkit#DownloadAccountResponse",
+	"users": [
+		{
+			"localId": "G59OwH1LSU7nt8UIBk7TF9Dj9Dui",
+			"createdAt": "1677596911681",
+			"lastLoginAt": "1678086190861",
+			"providerUserInfo": [{ "providerId": "password", "email": "firbigi1993@gmail.com", "federatedId": "firbigi1993@gmail.com", "rawId": "firbigi1993@gmail.com" }],
+			"validSince": "1678086113",
+			"email": "firbigi1993@gmail.com",
+			"emailVerified": true,
+			"disabled": false,
+			"emailLinkSignin": true,
+			"lastRefreshAt": "2023-03-06T07:03:10.861Z"
+		},
+		{
+			"localId": "QJ2AxgiV0WMTW3GSTgtVJAWo0t6n",
+			"createdAt": "1677594598884",
+			"lastLoginAt": "1677594598884",
+			"providerUserInfo": [],
+			"validSince": "1678086113",
+			"email": "taeng93@naver.com",
+			"emailVerified": true,
+			"disabled": false
+		}
+	]
+}
