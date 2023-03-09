@@ -5,6 +5,7 @@ export const DATA_ERROR = {
 		default: "이메일 로그인을 실패했어요... 😢",
 		browser: "로그인 시도한 브라우져로 시도해주세요... 😅",
 		url: "잘못된 url 이에요. 😢",
+		checkUser: "유저 정보를 확인하지 못했어요... 😢",
 	},
 	// user
 	user: {
