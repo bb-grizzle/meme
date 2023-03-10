@@ -1,7 +1,6 @@
 import useInputDefault from "@/hook/useInputDefault";
 import InputText from "../input/InputText";
 import styled from "styled-components";
-import { FormEvent } from "react";
 import useHomeSearch from "@/provider/HomeProvider/useHomeSearch";
 import SearchDropdown from "./SearchDropdown";
 

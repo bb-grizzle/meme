@@ -16,6 +16,7 @@ const Ul = styled.ul`
 	display: flex;
 	flex-wrap: wrap;
 	gap: 4px;
+	margin-top: 12px;
 `;
 
 const Li = styled.li`
