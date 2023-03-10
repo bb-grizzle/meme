@@ -34,11 +34,11 @@ const About = () => {
 						<RandBgText text="What makes you YOU" /> There are many ways to explain &apos;me&apos;, such as people living in Seoul, designers, and people with scars on their left arm. But We
 						don&apos;t know if these words really refer to me. Uncertain.
 						<RandBgText text="meme" /> is a website that shows how to express myself uniquely through writing. <br />
-						have fun ! 😀
+						Have fun ! 😀
 					</Text>
 				) : (
 					<Text>
-						<Small>이 프로젝트는 그룹 D-semicolon의 십이디땀 중 2월 뉴진스-OMG를 주제로 만들어졌습니다. </Small>
+						<Small>D-semicolon의 십이디땀 프로젝트 중 2월 뉴진스-OMG를 주제로 만들어졌습니다. </Small>
 						<br />
 						<RandBgText text="나를 고유하게 표현할 수 있을까?" /> 서울에 사는 사람, 디자이너, 왼팔에 흉터가 있는 사람 등 나를 설명할 수 있는 방법은 많다. 하지만 이 말들이 정말 나 한명을 지칭하는지는
 						확실하지 않다.
