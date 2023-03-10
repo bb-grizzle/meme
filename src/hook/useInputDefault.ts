@@ -28,8 +28,12 @@ const useInputDefault: UseInputTextType = (props) => {
 			if (!validation) return true;
 			else {
 				const format = DATA_VALIDATION[validation].reg;
-				const check = !!format.test(value.toString());
+				const check = format.test(value.toString());
 				setIsError(!check);
+				if (!check) {
+					changeErrorMessage(DATA_VALIDATION[validation].error);
+				}
+
 				return check;
 			}
 		} else {

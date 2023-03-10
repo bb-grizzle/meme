@@ -1,20 +1,30 @@
 import useInputDefault from "@/hook/useInputDefault";
-import fbSendSigninLink from "@/lib/firebase/auth/fbSendSigninLink";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import InputText from "../input/InputText";
 import Button, { BtnTypeEnum } from "../shared/Button";
 import styled from "styled-components";
-import RandBgText from "../shared/RandBgText";
 import useLoading from "@/hook/useLoading";
 import { DATA_ERROR } from "@/data/error";
 import media from "@/styles/media";
+import fbCheckEmail from "@/lib/firebase/auth/fbCheckEmail";
+import { ValidationType } from "@/data/input";
+import fbSignInWithEmail from "@/lib/firebase/auth/fbSignInWithEmail";
+import useUser from "@/provider/AppProvider/useUser";
+import fbSignUpWithEmail from "@/lib/firebase/auth/fbSignUpWithEmail";
+import fbFindPw from "@/lib/firebase/auth/fbFindPw";
 
-const Text = styled.p`
-	${(props) => props.theme.colorPalette.bw[700]};
-	margin-bottom: 24px;
+const MESSAGE_EMPTY = "* Empty";
+
+const Form = styled.form`
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
 `;
 
-const EmailText = styled(RandBgText)``;
+const Text = styled.p`
+	${(props) => props.theme.fontStyle.body.large};
+	margin-bottom: 20px;
+`;
 
 const BtnWrapper = styled.div`
 	display: flex;
@@ -22,36 +32,98 @@ const BtnWrapper = styled.div`
 	gap: 8px;
 
 	@media ${media.mobile} {
-		flex-direction: column;
+		flex-direction: column-reverse;
 	}
 `;
 
 const SigninForm = () => {
-	const emailHook = useInputDefault({ inputOption: { name: "email", placeholder: "type your email" } });
-	const [isSend, setIsSend] = useState(false);
+	const emailHook = useInputDefault({ inputOption: { name: "email", placeholder: "type your email" }, validation: ValidationType.EMAIL });
+	const pwHook = useInputDefault({ inputOption: { name: "password", placeholder: "type your password", type: "password" }, validation: ValidationType.PW });
+	const [isEmailExist, setIsEmailExist] = useState<null | boolean>(null);
 	const { startLoading, endLoading, loading } = useLoading();
 
+	// STATE
 	useEffect(() => {
-		return () => {
-			setIsSend(false);
-		};
-	}, []);
+		if (isEmailExist !== null) {
+			setIsEmailExist(null);
+		}
+		// eslint-disable-next-line
+	}, [emailHook.value]);
 
-	const back = () => {
-		emailHook.clear();
-		setIsSend(false);
+	const checkEmail = async () => {
+		try {
+			if (loading) return;
+			if (!emailHook.value) {
+				emailHook.changeErrorMessage(MESSAGE_EMPTY);
+				return;
+			}
+			if (!emailHook.checkValidation()) return;
+			startLoading();
+			const { ok, exist, message } = await fbCheckEmail({ email: `${emailHook.value}` });
+
+			if (!ok) {
+				// error
+				alert(message || DATA_ERROR.signIn.checkUser);
+				return;
+			}
+			if (ok && exist !== undefined) {
+				setIsEmailExist(exist);
+				return;
+			}
+		} catch (error) {
+			alert(DATA_ERROR.signIn.checkUser);
+		} finally {
+			endLoading();
+		}
 	};
 
-	const sendEmail = async () => {
-		startLoading();
+	const userSignin = async () => {
 		try {
-			if (!emailHook.value) return;
-			const { ok, message } = await fbSendSigninLink({ email: `${emailHook.value}` });
+			startLoading();
+			if (loading) return;
+			if (!emailHook.value) {
+				emailHook.changeErrorMessage(MESSAGE_EMPTY);
+				return false;
+			}
+			if (!emailHook.checkValidation()) return false;
+			if (!pwHook.value) {
+				pwHook.changeErrorMessage(MESSAGE_EMPTY);
+				return false;
+			}
+			if (!pwHook.checkValidation()) return false;
+
+			const { ok, message } = await fbSignInWithEmail({ email: `${emailHook.value}`, password: `${pwHook.value}` });
+
 			if (!ok) {
 				alert(message ?? DATA_ERROR.signIn.default);
 				return;
-			} else {
-				setIsSend(true);
+			}
+		} catch (error) {
+			alert(DATA_ERROR.signIn.default);
+		} finally {
+			endLoading();
+		}
+	};
+	const userSignup = async () => {
+		try {
+			startLoading();
+			if (loading) return;
+			if (!emailHook.value) {
+				emailHook.changeErrorMessage(MESSAGE_EMPTY);
+				return false;
+			}
+			if (!emailHook.checkValidation()) return false;
+			if (!pwHook.value) {
+				pwHook.changeErrorMessage(MESSAGE_EMPTY);
+				return false;
+			}
+			if (!pwHook.checkValidation()) return false;
+
+			const { ok, message } = await fbSignUpWithEmail({ email: `${emailHook.value}`, password: `${pwHook.value}` });
+
+			if (!ok) {
+				alert(message ?? DATA_ERROR.signIn.default);
+				return;
 			}
 		} catch (error) {
 			alert(DATA_ERROR.signIn.default);
@@ -60,33 +132,107 @@ const SigninForm = () => {
 		}
 	};
 
-	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		sendEmail();
+	const userFindPw = async () => {
+		try {
+			startLoading();
+			if (loading) return;
+			if (!emailHook.value) {
+				emailHook.changeErrorMessage(MESSAGE_EMPTY);
+				return false;
+			}
+			if (!emailHook.checkValidation()) return false;
+			const { ok, message } = await fbFindPw({ email: `${emailHook.value}` });
+			if (!ok) {
+				alert(message ?? DATA_ERROR.findPw.default);
+				return;
+			}
+
+			alert("이메일일 발송되었습니다... 📮");
+		} catch (error) {
+			alert(DATA_ERROR.findPw.default);
+		} finally {
+			endLoading();
+		}
 	};
 
-	return (
-		<form onSubmit={onSubmit}>
-			{!isSend ? (
-				<>
-					<InputText {...emailHook} />
-					<BtnWrapper>
-						<Button text="send email" iconOption={{ name: "navigate-outline" }} reverse={true} btnType={BtnTypeEnum.LINE} onClick={sendEmail} disabled={loading} />
-					</BtnWrapper>
-				</>
-			) : (
-				<>
-					<Text>
-						check your <EmailText text={`${emailHook.value}`} /> mail box ...📮
-					</Text>
+	const onSubmit = async (e?: FormEvent<HTMLFormElement>) => {
+		e?.preventDefault();
+		switch (isEmailExist) {
+			case null: {
+				checkEmail();
+				return;
+			}
+			case true: {
+				userSignin();
+				return;
+			}
+			case false: {
+				userSignup();
+				return;
+			}
+			default:
+				return;
+		}
+	};
 
-					<BtnWrapper>
-						<Button text="type another email" iconOption={{ name: "arrow-back" }} reverse={false} btnType={BtnTypeEnum.LINE} onClick={back} />
-						<Button text="resend" iconOption={{ name: "refresh" }} reverse={false} btnType={BtnTypeEnum.LINE} onClick={sendEmail} disabled={loading} />
-					</BtnWrapper>
-				</>
-			)}
-		</form>
+	// RENDER
+	// : render btn
+	const renderBtn = () => {
+		switch (isEmailExist) {
+			case null:
+				return (
+					<Button
+						text="Check Email"
+						reverse={true}
+						iconOption={{ name: loading ? "ellipsis-horizontal" : "chevron-forward-outline" }}
+						btnType={BtnTypeEnum.LINE}
+						onClick={checkEmail}
+						disabled={loading}
+					/>
+				);
+			case false:
+				return (
+					<>
+						<Button text="Find Password" reverse={true} iconOption={{ name: "key-outline" }} btnType={BtnTypeEnum.LINE} onClick={userFindPw} disabled={loading} />
+						<Button text="Sign Up" reverse={true} iconOption={{ name: "add-outline" }} btnType={BtnTypeEnum.LINE} onClick={userSignup} disabled={loading} />
+					</>
+				);
+			case true:
+				return (
+					<>
+						<Button text="Find Password" reverse={true} iconOption={{ name: "key-outline" }} btnType={BtnTypeEnum.LINE} onClick={userFindPw} disabled={loading} />
+						<Button text="Sign In" reverse={true} iconOption={{ name: "airplane-outline" }} btnType={BtnTypeEnum.LINE} onClick={userSignin} disabled={loading} />
+					</>
+				);
+			default:
+				return null;
+		}
+	};
+
+	// : render form text
+	const renderText = useCallback(() => {
+		switch (isEmailExist) {
+			case null:
+				return <Text>before start, you need to sign in ...😀 </Text>;
+			case false:
+				return <Text>You don&apos;t have account yet! Plz sign up ...😋 </Text>;
+			case true:
+				return <Text>You have account already! Type your password ...🤪</Text>;
+			default:
+				return null;
+		}
+	}, [isEmailExist]);
+
+	return (
+		<>
+			{renderText()}
+			<Form onSubmit={onSubmit}>
+				<InputText {...emailHook} inputOption={{ ...emailHook.inputOption, disabled: loading }} />
+				{isEmailExist !== null && <InputText {...pwHook} inputOption={{ ...pwHook.inputOption, disabled: loading, autoFocus: true }} onEnter={onSubmit} />}
+
+				<BtnWrapper>{renderBtn()}</BtnWrapper>
+			</Form>
+		</>
 	);
 };
 

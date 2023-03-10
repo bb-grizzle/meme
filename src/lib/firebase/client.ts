@@ -2,6 +2,7 @@ import { getApps, initializeApp } from "firebase/app";
 import { connectAuthEmulator, getAuth } from "firebase/auth";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { connectStorageEmulator, getStorage } from "firebase/storage";
+import { Analytics, getAnalytics, isSupported } from "firebase/analytics";
 
 const EMULATORS_STARTED = "EMULATORS_STARTED";
 
@@ -23,6 +24,12 @@ const initFirebase = () => {
 	} else {
 		return nowApp[0];
 	}
+};
+
+export const initAnalytics = () => {
+	isSupported().then((result) => {
+		getAnalytics(app);
+	});
 };
 
 const app = initFirebase();
