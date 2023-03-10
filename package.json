@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "firebase use default && env-cmd -f ./env/development.env next dev",
+		"build": "npm run build:prod",
 		"build:dev": "npm run lint && env-cmd -f ./env/development.env npx next build && npx next export",
 		"build:prod": "npm run lint && env-cmd -f ./env/production.env npx next build && npx next export",
 		"start": "npx next start",
