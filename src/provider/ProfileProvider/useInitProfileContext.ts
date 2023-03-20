@@ -21,7 +21,6 @@ const useInitProfileContext = (ctx: ProfileContextProps) => {
 			setProfile((prev) => ({ ...prev, loading: true }));
 			const { ok, message, data } = await fbProfileGet({ id });
 			if (!ok) {
-				console.log(message);
 				setProfile((prev) => ({ ...prev, loading: false, error: message ?? DATA_ERROR.profile.default }));
 			}
 
