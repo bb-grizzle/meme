@@ -23,7 +23,6 @@ const Signup = () => {
 			const { ok, message, user } = await fbCheckSignin();
 
 			if (!ok) {
-				console.log(message);
 				await alert(message ?? DATA_ERROR.signIn.default);
 				push(ROUTER.signin);
 			}
