@@ -41,6 +41,7 @@ const fbProfileGet: FbProfileGetType = async ({ id }) => {
 			data,
 		};
 	} catch (error) {
+		console.log(error);
 		return { ok: false, message: DATA_ERROR.profile.default };
 	}
 };

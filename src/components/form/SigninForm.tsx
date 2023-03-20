@@ -9,7 +9,6 @@ import media from "@/styles/media";
 import fbCheckEmail from "@/lib/firebase/auth/fbCheckEmail";
 import { ValidationType } from "@/data/input";
 import fbSignInWithEmail from "@/lib/firebase/auth/fbSignInWithEmail";
-import useUser from "@/provider/AppProvider/useUser";
 import fbSignUpWithEmail from "@/lib/firebase/auth/fbSignUpWithEmail";
 import fbFindPw from "@/lib/firebase/auth/fbFindPw";
 
